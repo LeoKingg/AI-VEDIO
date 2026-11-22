@@ -1,0 +1,25 @@
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Large local media exports (keep repo lightweight; store raw renders locally or in cloud drive)
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.mp3
+*.m4a
+*.psd
+*.prproj
+*.drp
+projects/*/media/
+projects/*/renders/

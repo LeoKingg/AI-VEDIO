@@ -82,6 +82,8 @@ AT_TOKEN_PATTERN = re.compile(r"@([\u4e00-\u9fffA-Za-z0-9_\-]+)")
 
 HIGH_RISK_THREE_VIEW_PATTERN = re.compile(r"@[\u4e00-\u9fffA-Za-z0-9_\-]*三视图")
 HIGH_RISK_WHITE_CALM_PATTERN = re.compile(r"#FFFFFF|纯白底|纯白背景|平静头肩|表情网格", re.IGNORECASE)
+STYLE_ANCHOR_TOKEN_PATTERN = re.compile(r"(?:风格光影锚|风格锚|光影锚|STYLE)", re.IGNORECASE)
+SCENE_OR_START_TOKEN_PATTERN = re.compile(r"(?:空景|首帧|定妆帧|SCENE|SHOT[-_]?START)", re.IGNORECASE)
 
 VISUAL_NEGATIVE_PATTERN = re.compile(
     r"(?:不要|禁止|严禁|绝不|不得|切勿|没有)(?!背景音乐|BGM|bgm|字幕|水印|任何眼部发光|眼部发光|闪烁|对白)[\u4e00-\u9fffA-Za-z0-9]{2,12}|"
@@ -396,6 +398,22 @@ def lint_unit(unit: PromptUnit, model: str) -> List[Issue]:
                 message="含人物画面未交代主光源方向与光照落点，易出现“影棚抠图贴片感”",
                 excerpt=body[:50],
                 suggestion="补写 1 句实用光源方向、受光面与阴影落点描述",
+            )
+        )
+
+    # RL-18: Redundant style anchor bound alongside scene plate or start frame (ERR-015)
+    all_assets = list(dict.fromkeys(list(unit.declared_assets) + body_tokens))
+    style_tokens = [tok for tok in all_assets if STYLE_ANCHOR_TOKEN_PATTERN.search(tok)]
+    scene_start_tokens = [tok for tok in all_assets if SCENE_OR_START_TOKEN_PATTERN.search(tok)]
+    if style_tokens and scene_start_tokens:
+        issues.append(
+            Issue(
+                unit=uid,
+                severity="P0",
+                rule_id="RL-18",
+                message="同时绑定了同源风格光影锚与空景/首帧，会导致权重稀释与重复描述（ERR-015）",
+                excerpt=f"@{style_tokens[0]} + @{scene_start_tokens[0]}",
+                suggestion="删除风格光影锚，仅保留空景或 S 级首帧作为唯一环境光影源",
             )
         )
 

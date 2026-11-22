@@ -12,7 +12,7 @@ import lint_prompt  # noqa: E402
 
 
 CLEAN_20_PROMPT = """
-中国当代现实主义院线电影质感，16:9横屏，ARRI Alexa Mini LF 35mm电影胶片细微颗粒。画面暗部光比与冷暖色温延续@风格光影锚。将@客厅餐厅夜景 定义为夜晚暖黄吊灯的老式家庭餐厅；将@母亲单人图 定义为身穿旧条纹衬衫的母亲（使用@母亲干声 声线）。
+中国当代现实主义院线电影质感，16:9横屏，ARRI Alexa Mini LF 35mm电影胶片细微颗粒。@客厅餐厅夜景空景 是本场家庭餐厅，仅提供空间布局与光影氛围，不复刻其全景构图；将@母亲单人图 定义为坐在餐桌左侧身穿旧条纹衬衫的母亲（使用@母亲干声 声线）。
 
 镜头1：85mm浅景深面部近景，固定机位。头顶单盏暖黄吊灯照亮母亲额头与颧骨，眼窝沉在自然阴影里，木桌微弱反光映在下颌下方。母亲眼眶泛红蓄泪，下唇抿紧半秒后微微发颤，胸口急促起伏，视线直盯餐桌左侧低声沙哑质问：“凭啥这辈子都得我让着？”说完手指顺势攥住桌沿，饭菜微弱热气缓缓升起，保留一秒沉默喘息。
 
@@ -20,7 +20,7 @@ CLEAN_20_PROMPT = """
 """.strip()
 
 CLEAN_25_PROMPT = """
-【参考绑定】按出场顺序绑定：@图1 为S级餐厅首帧（作为开场首帧）；@图2 为母亲中灰底侧光单人图，对应声线 @音频1；@图3 为全片光影风格锚。
+【参考绑定】按出场顺序绑定：@图1 为S级餐厅首帧（作为开场首帧，已锁定光影与构图）；@音频1 为母亲参考干声。
 
 【一句话总纲】中国当代现实主义院线电影质感，16:9横屏，ARRI Alexa Mini LF 35mm胶片细微颗粒，夜晚低照度暖黄吊灯下母亲在旧餐桌边沉默转折的一镜到底，画面严格共计2人。
 
@@ -37,7 +37,7 @@ class LintPromptTests(unittest.TestCase):
     def test_clean_20_passes(self) -> None:
         unit = lint_prompt.PromptUnit(
             unit_id="U01",
-            declared_assets=["风格光影锚", "客厅餐厅夜景", "母亲单人图", "母亲干声"],
+            declared_assets=["客厅餐厅夜景空景", "母亲单人图", "母亲干声"],
             body=CLEAN_20_PROMPT,
         )
         issues = lint_prompt.lint_unit(unit, "2.0")
@@ -46,7 +46,7 @@ class LintPromptTests(unittest.TestCase):
     def test_clean_25_passes(self) -> None:
         unit = lint_prompt.PromptUnit(
             unit_id="U01",
-            declared_assets=["图1", "图2", "音频1", "图3"],
+            declared_assets=["图1", "音频1"],
             body=CLEAN_25_PROMPT,
         )
         issues = lint_prompt.lint_unit(unit, "2.5")
@@ -92,7 +92,7 @@ class LintPromptTests(unittest.TestCase):
     def test_handbook_extraction_with_markers(self) -> None:
         handbook = (
             "## U01｜测试单元\n"
-            "- **绑定参考**：`@风格光影锚`、`@客厅餐厅夜景`、`@母亲单人图`、`@母亲干声`\n\n"
+            "- **绑定参考**：`@客厅餐厅夜景空景`、`@母亲单人图`、`@母亲干声`\n\n"
             "<!-- PROMPT_START: U01 -->\n"
             "```seedance\n"
             f"{CLEAN_20_PROMPT}\n"
@@ -102,7 +102,7 @@ class LintPromptTests(unittest.TestCase):
         units = lint_prompt.extract_units(handbook, "act1.md")
         self.assertEqual(1, len(units))
         self.assertEqual("U01", units[0].unit_id)
-        self.assertEqual(["风格光影锚", "客厅餐厅夜景", "母亲单人图", "母亲干声"], units[0].declared_assets)
+        self.assertEqual(["客厅餐厅夜景空景", "母亲单人图", "母亲干声"], units[0].declared_assets)
         self.assertEqual([], lint_prompt.lint_unit(units[0], "2.0"))
 
     def test_no_false_positives_on_decimals_and_normal_wu_words(self) -> None:
@@ -113,6 +113,21 @@ class LintPromptTests(unittest.TestCase):
         )
         issues = lint_prompt.lint_unit(lint_prompt.PromptUnit("U05", [], text), "2.0")
         self.assertEqual([], issues, f"Unexpected false positives: {issues}")
+
+    def test_rejects_redundant_style_anchor_with_scene_or_start_frame(self) -> None:
+        bad = (
+            "中国当代现实主义电影，16:9横屏，头顶暖黄吊灯照亮父亲侧脸。"
+            "延续@风格光影锚_餐厅夜 与@餐厅夜景空景，将@爸爸单人图 定义为父亲。"
+            "无背景音乐，无字幕，无水印。"
+        )
+        unit = lint_prompt.PromptUnit(
+            "U01B",
+            declared_assets=["风格光影锚_餐厅夜", "餐厅夜景空景", "爸爸单人图"],
+            body=bad,
+        )
+        issues = lint_prompt.lint_unit(unit, "2.0")
+        p0_rules = {i.rule_id for i in issues if i.severity == "P0"}
+        self.assertIn("RL-18", p0_rules)
 
 
 if __name__ == "__main__":

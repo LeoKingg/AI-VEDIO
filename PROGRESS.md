@@ -14,7 +14,7 @@
 | **Phase 2A** | Pilot 剧目《今天谁过生日》（`mama-birthday`）**第一幕**全套资产、Prompt 与 12 条成片验收 | `主流程已跑通` | `10/12` 可用/微裁可用；待补 `U03B` 重抽与终剪回填 |
 | **Phase 2B** | 《今天谁过生日》**第二幕**试水并演进至 V2.4 闭唇实景母帧方案（24 块 Prompt + 零失步工作台） | `已完成（V2.x 基线封存）` | `7351f72`（保留作 V2.x 历史基线对照，不覆盖） |
 | **Phase 3** | **V3.0 工业化制片系统重构**：`Seedance 2.5` 主力切换 + `STUDIO_CONSTITUTION` + `SOP_V3.0` + 4 个可插拔 `presets/` + **7 个专家 Skills** + 双目标跨文件 `lint_prompt.py` + `build_workbench.py` + `init_project.py` + **7 Skills 全局注册** | `已完成（已推送 origin/main）` | V2.4 全部实战经验与官方 2.5 机制已 100% 正式合入 `docs/` & `skills/` |
-| **Phase 4** | **V3.0 首次七大专家实战验证（Option A2）**：用 3 波次 7-Agent 流水线 + `Seedance 2.5` 完成《今天谁过生日》**第二幕 `SEQ-Multi` A/B 重构**（`03_act02_v3_seedance25_handbook.md` + `manifest.json` + 交互工作台） | `双审 PASS（待 480p 首轮 3 锚点实测）` | 11 镜/10 缝压缩至 6 单元/5 缝；18 张 V2.4 静帧 100% 零浪费复用 |
+| **Phase 4** | **V3.0 首次七大专家实战验证（Option A2）**：用 3 波次 7-Agent 流水线 + `Seedance 2.5` 完成《今天谁过生日》**第二幕 `SEQ-Multi` 完整重构**（含 13 张生图 + 7 条视频 `20` 单元、`manifest.json` 与交互工作台） | `双审 PASS（待首轮 7 图 + 3 视频 480p 实测）` | 11 镜/10 缝压缩至 6 单元/5 缝；全套 20 单元 `P0=0, P1=0` |
 
 ---
 
@@ -38,10 +38,10 @@
 - [x] 全套资产与 12 条成片人工验收完成（7 条直接可用 + 3 条剪映微裁可用；`U03B` 必重抽、`U02B-1` 建议局部编辑/重抽）。
 - [ ] 待收齐 `U03B`（及 `U02B-1` `E-Edit` 修复）成片后，按 V3.0 7 维台账回填 `05_test_log.md` 与 `04_post_jianying_memo.md`。
 
-### 第二幕（V2.4 基线封存 + V3.0 `Seedance 2.5` A/B 重构就绪）
+### 第二幕（V2.4 基线封存 + V3.0 `Seedance 2.5` 完整重拍就绪）
 - [x] V2.4 基线 [03_act02_handbook.md](projects/mama-birthday/03_act02_handbook.md)（24 块 Prompt）保留封存（`7351f72`）。
-- [x] **V3.0 A2 重构版 [03_act02_v3_seedance25_handbook.md](projects/mama-birthday/03_act02_v3_seedance25_handbook.md)** + [`manifest.json`](projects/mama-birthday/manifest.json) 已跑通三波次 7-Agent 协同与双审 `PASS`（8 单元 `P0=0, P1=0`）。
-- [ ] **下一步实测**：跑 Pre-Vis → 先用 **`480p`** 实测 3 个锚点单元（`M2V3-01` / `M2V3-03` / `M2V3-06`），由站 7 `post-qa-finishing` 执行 7 维质检后转 `1080p` 与全量生成。
+- [x] **V3.0 A2 完整重构版 [03_act02_v3_seedance25_handbook.md](projects/mama-birthday/03_act02_v3_seedance25_handbook.md)**（13 张 `Seedream 5.5` 生图 + 7 条 `Seedance 2.5` 视频共 `20` 单元）+ [`manifest.json`](projects/mama-birthday/manifest.json) 已跑通双审 `PASS`（`P0=0, P1=0`）。
+- [ ] **下一步实测**：继承第一幕 5 项公共底座 → 先出首轮 **7 张锚点图** → Pre-Vis → **`480p` 实测 3 个视频锚点（`M2V3-01` / `M2V3-03` / `M2V3-06`）**，由站 7 质检后转 `1080p` 与全量生成。
 
 ### 第三幕 ～ 第五幕（全面切换 V3.0 七大专家 + `Seedance 2.5` 生产）
 - [ ] **第三幕**（独立厨房停火解围裙 → 餐厅反问）：先由 `director-showrunner` 产出第 0.5 步剧情讨论表并拍板，再跑 3 波次流水线。

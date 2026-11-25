@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>03｜第二幕 V3.0 A/B 重构执行手册：连环拷问升级（Seedance 2.5 SEQ-Multi 主力版）｜V3.0 执行工作台</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-4 md:p-6 m-0">
+  <div class="max-w-5xl mx-auto space-y-5">
+    <header class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 md:p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2 flex-wrap">
+          <h1 class="text-lg font-bold tracking-tight">03｜第二幕 V3.0 A/B 重构执行手册：连环拷问升级（Seedance 2.5 SEQ-Multi 主力版）</h1>
+          <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-[var(--primary)] text-[var(--primary-foreground)]">V3.0 自动编译 · 零失步</span>
+        </div>
+        <p class="text-xs text-[var(--muted-foreground)]">
+          由 <code class="text-[var(--code-foreground)]">scripts/build_workbench.py</code> 直接编译自 <code class="text-[var(--code-foreground)]">03_act02_v3_seedance25_handbook.md</code>（100% 逐字节一致）｜粘贴后删除纯文本 <code class="text-[var(--code-foreground)]">@资产名</code> 并用即梦 <code class="text-[var(--code-foreground)]">@</code> 弹窗按序重绑。
+        </p>
+      </div>
+      <div class="flex items-center gap-3 text-xs shrink-0">
+        <div class="px-3 py-1.5 rounded-lg bg-[var(--content)] border border-[var(--border)]">
+          已完成：<span id="progress-count" class="font-bold tabular-nums">0 / 8</span>
+        </div>
+        <button id="reset-progress" type="button" class="px-2.5 py-1.5 rounded-lg border border-[var(--border)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition cursor-pointer">
+          清空勾选
+        </button>
+      </div>
+    </header>
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[var(--border)] pb-3">
+      <div class="flex items-center gap-2 flex-wrap">
+        <button type="button" data-tab="videos" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition">
+          ① 视频生成（7 条）
+        </button>
+        <button type="button" data-tab="images" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition">
+          ② Seedream 5.5 生图（1 张）
+        </button>
+      </div>
+      <label class="inline-flex items-center gap-2 text-xs text-[var(--muted-foreground)] cursor-pointer select-none">
+        <input id="only-anchors" type="checkbox" class="w-3.5 h-3.5 accent-[var(--primary)] cursor-pointer" />
+        <span>只看首轮锚点（0 图 + 3 视频）</span>
+      </label>
+    </div>
+
+    <main id="panel-videos" class="space-y-4"></main>
+    <main id="panel-images" class="space-y-4 hidden"></main>
+  </div>
+
+  <script>
+    const DATA = {"docTitle": "03｜第二幕 V3.0 A/B 重构执行手册：连环拷问升级（Seedance 2.5 SEQ-Multi 主力版）", "sourceFile": "03_act02_v3_seedance25_handbook.md", "images": [{"id": "image-1-SHOT-START-M207", "uid": "SHOT-START-M207", "title": "可选生图微调｜SHOT-START-M207 安全区上移精修（仅当已有 @M2-07首帧 指尖过贴底边 10% 时使用）", "badge": "生图", "badgeTone": "muted", "anchor": false, "bind": "@M2-07首帧（Seedream 5.5，16:9，同图单轮精修）", "check": "底边最下方 10% 保留纯暗胡桃木纹留白，指尖与空桌沿上移至底边 1/5 安全高度。", "prompt": "保持 @M2-07首帧 的80度俯拍角度、深胡桃木桌面、四副白瓷碗筷、长辈衣袖与菜盘光影完全不变，仅将画幅下方的空木桌区域与右下角男孩浅灰袖口右手整体上移至距离底边约五分之一的安全高度，指尖停在底边上方留白木面处，底边最下方一成保留纯暗胡桃木纹留白，其余区域像素级一致，无字无水印。"}], "videos": [{"id": "video-2-M2V3-01", "uid": "M2V3-01", "title": "1. M2V3-01 ★｜拍桌震碗立威与顶嘴压制（模式：SEQ-Multi｜建议时长：13s｜状态：S1｜输出：MOV/MP4）", "badge": "★ 锚点 · SEQ-Multi", "badgeTone": "primary", "anchor": true, "bind": "1 @M2-01首帧 + 2 @爸爸单人图 + 3 @小屿实景近景母帧 + 4 @小屿面部特写 + 5 @爸爸站姿近景母帧 + 6 @爸爸干声_爆发 + 7 @小屿干声_压抑", "check": "3 切同房暖冷光比零跳变；Cut 2 扩至 5s（[5s-10s]）兼顾吞咽起势与 0.8s 尾韵，承接 U06 红眼泪痕且惊颤咬牙不假笑；Cut 3 爸爸视线朝右下方不越轴。", "prompt": "按首出场排序： @M2-01首帧 为开场首帧与餐厅夜戏实景空间； @爸爸单人图 锁定穿深炭灰POLO衫的爸爸五官与身形连戏； @小屿实景近景母帧 与 @小屿面部特写 锁定8岁穿浅藏青拼浅灰插肩长袖卫衣的小屿五官、泛红眼眶及左颊湿润泪痕连戏； @爸爸站姿近景母帧 锁定后段站姿近景构图；声线分别使用 @爸爸干声_爆发 与 @小屿干声_压抑 。16:9横屏，ARRI Alexa Mini LF实拍电影质感，Kodak 500T夜间细微胶片颗粒，头顶暖黄吊灯垂直打亮人物额颊与胡桃木桌面，半脸与背景沉入过半冷灰暗部，人物眼神自然正常。\n[0s-5s] 50mm浅景深微仰中近景跟拍。第0秒从 @M2-01首帧 起势，爸爸右掌重拍深胡桃木桌沿，桌沿白瓷碗与竹筷明显震跳碰撞，爸爸随即起身居画面左侧三分之一向右侧前倾，三分之二侧脸朝画外右侧不看向镜头；右后景桌旁坐着虚化的卡其灰西装女性同样低头看碗绝不看向镜头，餐桌向画外右后方延伸，右画幅边缘切在桌身中段，沿桌满座。爸爸借 @爸爸干声_爆发 怒斥：{谁教你这么跟长辈说话的！把鱼端回来！}\n[5s-10s] 硬切85mm单人近景，切入 @小屿实景近景母帧 机位并由 @小屿面部特写 锁脸：小屿居画面右侧三分之一，左侧大面积冷暗留白，身后暗墙远点缀微弱暖光小台灯。第0秒肩头微颤吞咽半口气，下颌紧咬微颤、嘴角平直下抿（全程无笑意，眼神自然正常），盯画外左侧不看向镜头，借 @小屿干声_压抑 顶回：{我妈一个人在厨房忙，你不怕别人笑话吗！}留0.8秒对视画外左侧余韵。\n[10s-13s] 硬切85mm微仰近景，切入 @爸爸站姿近景母帧 ：爸爸居左三分之一背靠素净冷灰墙，下巴微抬俯视画外右下方不看向镜头，借 @爸爸干声_爆发 喝断：{大人的事你懂什么！}尾音落定留0.8秒冷峻凝视。\n全程保留<拍桌闷响、碗筷震跳碰撞声、急促喘息与室内底噪>。全程无背景音乐，无字幕，无水印，画面流畅无闪烁，五官与光影前后一致。"}, {"id": "video-3-M2V3-02", "uid": "M2V3-02", "title": "2. M2V3-02｜长辈群像推责与空位质问（模式：SEQ-Grid｜建议时长：10s｜状态：S1｜输出：MOV/MP4）", "badge": "SEQ-Grid", "badgeTone": "success", "anchor": false, "bind": "1 @M2-04首帧 + 2 @M2-05首帧 + 3 @小屿干声_压抑 + 4 @小屿干声_爆发", "check": "两枚预烘焙关键帧依次精准对齐；前 5s 三长辈各有微反应且全员不看镜头，后 5s 五人同框指向桌下空木地板并留 0.8s 指空悬停余韵。", "prompt": "按顺序将 @M2-04首帧 与 @M2-05首帧 作为关键帧，小屿童声分别使用 @小屿干声_压抑 与 @小屿干声_爆发 驱动。16:9横屏，ARRI Alexa Mini LF实拍电影质感，Kodak 500T夜间细微胶片颗粒，头顶暖黄吊灯垂直打亮桌沿、瓷碗与人物受光面，暗部沉入冷灰阴影，人物眼神自然正常。\n[0s-5s] 切入 @M2-04首帧 的35mm微仰中近景缓慢向右平摇扫过桌旁三位坐姿长辈：卡其灰西装女性低头看面前白瓷碗，右手执竹筷尖轻点碗沿露出不耐神态；白发老妇避开视线头微向左偏；戴老花镜的老人拇指稳搭碗沿不动；三位长辈均不看向镜头，右下前景露出虚化的小屿浅灰袖口手臂横指向三人方向。画外响起 @小屿干声_压抑 带着微哽质问：{我不懂，你们都懂，你们都坐着，我妈一个人在干活！}\n[5s-10s] 借指点动势切至 @M2-05首帧 的35mm微俯五人中近景并缓慢向前推向画幅下缘正中空地板与光洁木桌沿：四位长辈各自稳坐四把餐椅不看镜头、面前各有白瓷碗，右前景三分之二背侧身的小屿上身左倾，伸直左手食指指向桌下裸露空木地板与光洁近侧木桌沿，借 @小屿干声_爆发 拔高带哭腔质问：{连个位置都没给我妈留，我妈坐在哪里？}指尖悬停空位定格0.8秒余韵。\n全程保留<竹筷轻点瓷碗细响、衣袖摩擦声、地板轻踏声与室内低气压底噪>。全程无背景音乐，无字幕，无水印，画面流畅无闪烁，五官与光影前后一致。"}, {"id": "video-4-M2V3-03", "uid": "M2V3-03", "title": "3. M2V3-03 ★｜爷爷推碗加椅敷衍（模式：M-Master｜建议时长：5s｜状态：S1｜输出：MOV/MP4）", "badge": "★ 锚点 · M-Master", "badgeTone": "primary", "anchor": true, "bind": "1 @爷爷实景近景母帧 + 2 @爷爷面部特写", "check": "20° 暖侧光切出老年皱纹立体感，手推白瓷碗 1cm 真实接触物理，全程平嘴零假笑；重点听审 {...得了} 读 dé le 音。", "prompt": "@爷爷实景近景母帧 为开场首帧起点，参考 @爷爷面部特写 锁定66岁戴细金属框老花镜的爷爷真实皱纹、花白短发与深灰褐开衫连戏。16:9横屏，ARRI Alexa Mini LF实拍电影质感，Kodak 500T夜间细微胶片颗粒，完整延续首帧深色落地窗帘与20度暖黄侧顶光（暖光斜切雕刻面部皱纹，左颊落入冷灰暗影），人物眼神自然正常。\n[0s-5s] 85mm眼平单人近景固定机位，爷爷稳居画面左侧三分之一、右侧留出暗部视线空间。第0秒从首帧闭唇静坐态自然启动，搭在白瓷碗沿的右手轻推瓷碗向内挪动约1厘米（碗底轻擦胡桃木桌面）随后手掌平落停稳；老人嘴唇平直全程无笑意，双眼睁开漫不经心斜瞥画外右下方、始终不看向镜头，用低沉平缓、口语轻挑随意的老年男声敷衍道：{等她忙完，再加把椅子不就得了。}话落自然眨眼一次，视线平淡垂回面前瓷碗保持0.8秒余韵。\n全程保留<瓷碗轻擦木面细响、衣料微响与安静室内底噪>及平缓沙哑老年男声。全程无背景音乐，无字幕，无水印，画面流畅无闪烁，五官与光影前后一致。"}, {"id": "video-5-M2V3-04", "uid": "M2V3-04", "title": "4. M2V3-04｜80° 顶拍四碗空沿数证（模式：S-Struct｜建议时长：4s｜状态：S1｜输出：MOV/MP4）", "badge": "S-Struct", "badgeTone": "muted", "anchor": false, "bind": "1 @M2-07首帧 + 2 @小屿干声_压抑", "check": "满画幅纯桌面 0 人脸 0 空椅；4 碗旁见 4 位长辈搭桌手袖，小屿食指顿停底 1/5 上方安全区不越字幕线。", "prompt": "@M2-07首帧 为开场首帧起点，画外童声使用 @小屿干声_压抑 驱动。16:9横屏，ARRI Alexa Mini LF实拍电影质感，Kodak 500T夜间细微胶片颗粒，头顶暖黄吊灯垂直打亮深胡桃木桌面、四副白瓷碗沿、原有菜盘与男孩指节，碗底与桌缘外侧落入冷灰暗影。\n[0s-4s] 80度近垂直高角全桌面俯拍固定机位，画幅四边全部由深胡桃木桌面填满，无人脸、座椅或地面入画；桌面左侧与远端四位在座长辈的衣袖与手背各自搭在面前四副白瓷碗筷旁，桌面正中央保持平整空旷的深胡桃木原木面，下缘光洁木桌边稳居画幅下偏上方安全区内。右下角伸入穿浅灰罗纹袖口的小屿右手，食指依次点过四副白瓷碗筷方位，随后急停悬停在画幅底五分之一高度之上的光洁空桌沿上方轻微颤抖，画外响起 @小屿干声_压抑 压抑微哽质问：{她的碗呢，筷子呢？}指尖悬停保持1秒不撤。\n全程保留<急促鼻息声、衣袖微擦桌沿细响与夜间室内底噪>。全程无背景音乐，无字幕，无水印，画面流畅无闪烁，光影与桌面摆位前后一致。"}, {"id": "video-6-M2V3-05", "uid": "M2V3-05", "title": "5. M2V3-05｜姑姑甩筷打发与爸爸退缩词穷（模式：SEQ-Multi｜建议时长：12s｜状态：S1｜输出：MOV/MP4）", "badge": "SEQ-Multi", "badgeTone": "success", "anchor": false, "bind": "1 @姑姑实景近景母帧 + 2 @M2-09首帧 + 3 @爸爸落座近景母帧 + 4 @姑姑单人图 + 5 @爸爸单人图 + 6 @小屿干声_压抑 + 7 @小屿干声_爆发 + 8 @爸爸干声_压抑（**严禁加挂 @小屿单人图**，防右前景虚化孩童肩背转头露脸）", "check": "姑姑竹筷敲碗轻甩不假笑；Cut 2 紧越肩爸爸吞咽搓桌躲闪；Cut 3 切换 5° 微倾单人近景明显拉开景别防跳剪。", "prompt": "按首出场排序： @姑姑实景近景母帧 与 @姑姑单人图 锁定穿卡其灰休闲西装的42岁姑姑五官连戏； @M2-09首帧 与 @爸爸落座近景母帧 分别作为中后段起点并由 @爸爸单人图 锁定穿深炭灰POLO衫的爸爸五官连戏；人声使用 @小屿干声_压抑 、 @小屿干声_爆发 与 @爸爸干声_压抑 。16:9横屏，ARRI Alexa Mini LF实拍电影质感，Kodak 500T细微颗粒，暖黄顶灯压亮人物额鼻与瓷碗，冷灰阴影过半，人物眼神自然正常。\n[0s-3s] 85mm眼平单人近景，姑姑居 @姑姑实景近景母帧 左三分之一、背靠素净冷灰墙，视线斜落画外右下方不看向镜头。右手竹筷轻敲瓷碗沿发出<竹筷轻敲瓷碗叮响>，随即手腕朝右轻蔑一甩，嘴唇平直无笑意，用语速偏快、干脆敷衍的42岁女声打发道：{厨房有，让她自己拿。}\n[3s-7s] 硬切85mm紧越肩近景进入 @M2-09首帧 ：右前景四分之一虚化孩童左肩背微颤不动，画外 @小屿干声_压抑 急问：{那蛋糕呢？}左三分之一落座的爸爸双肩明显内缩、喉结干吞一声，手指在胡桃木桌沿不安搓动，视线低垂躲向面前白瓷碗不敢对视右侧，借 @爸爸干声_压抑 低声发虚回应：{菜太多，没买。}\n[7s-12s] 硬切85mm紧逼近景进入 @爸爸落座近景母帧 约5度微倾构图并极其缓慢推近，前景无遮挡肩背，暖顶光照出爸爸鼻额细微油亮汗意。画外 @小屿干声_爆发 尖锐带泪喊出：{礼物呢，你什么都没准备！}爸爸眉心骤紧，右手无力虚摆后颓然落掌按回大腿与桌沿，借 @爸爸干声_压抑 强挤出虚弱辩解：{一家人吃顿饭就行！}尾音落定目光僵硬垂落。\n全程保留<竹筷轻敲瓷碗叮响、指节搓木桌细响、衣袖虚摆声与低气压室内底噪>。全程无背景音乐，无字幕，无水印，画面流畅无闪烁，五官与光影前后一致。"}, {"id": "video-7-M2V3-06", "uid": "M2V3-06", "title": "6. M2V3-06 ★｜30° 弧推尊严爆发（模式：M-Master｜建议时长：10s｜状态：S1｜输出：MOV/MP4）", "badge": "★ 锚点 · M-Master", "badgeTone": "primary", "anchor": true, "bind": "1 @小屿实景近景母帧 + 2 @小屿面部特写 + 3 @小屿单人图 + 4 @小屿干声_爆发", "check": "3s/3s/4s 分段（[6s-10s] 前 3s 说完 11 字重音 děi + 尾 1s 闭唇滚泪定格）；终点大特写向画幅中右侧略收拢，右脸缘距右界 ≥15% 避开抖音栏。", "prompt": "@小屿实景近景母帧 为开场首帧起点，参考 @小屿面部特写 与 @小屿单人图 锁定8岁男孩小屿（浅藏青拼浅灰插肩长袖卫衣、泛红眼眶与左颊湿润泪痕）面部肌理与身形连戏，全程人声紧锁 @小屿干声_爆发 驱动。16:9横屏，ARRI Alexa Mini LF实拍电影质感，Kodak 500T夜间细微胶片颗粒，完整延续首帧深暗墙面与远处微弱暖光小台灯，头顶暖黄暗光压亮小屿额颊与泪光，左侧大面积留白沉入冷灰暗影；小屿稳居画面右侧三分之一、双手在画幅下方握拳不遮挡面部，下颌向下微颤紧咬、全程无笑意、眼神自然正常且始终盯住画外左侧不看向镜头。\n[0s-3s] 机位由50mm微仰近景顺时针滑出约30度平缓弧线并边推边升，前0.3秒小屿先深吸气蓄力、胸口明显起伏，随即借 @小屿干声_爆发 朝画外左侧迸发呐喊：{一桌菜全都是我妈做的！}\n[3s-6s] 机位随声势持续弧推拉近收紧焦距，小屿急促倒吸半口带着湿意的气、眼眶泪光盈满下唇细颤，紧逼喊出：{可以不买蛋糕，可以不要礼物，}\n[6s-10s] 弧推到位锁定85mm眼平大特写并将人物略向画幅中右侧收拢，右脸缘与底缘留足暗部安全空间，小屿下颌紧绷一字一顿重音咬死喊出：{但是最起码的尊重得有吧！}第9秒尾音落定瞬间双唇颤抖抿紧闭拢，热泪沿左颊滚落，保持1秒盯着画外左侧的无声凝视余韵。\n全程保留<夜色室内安静底噪、急促哭腔喘息声与衣领微动细响>。全程无背景音乐，无字幕，无水印，画面流畅无闪烁，五官与光影前后一致。"}, {"id": "video-8-M2V3-06-VREF", "uid": "M2V3-06-VREF", "title": "7. M2V3-06-VREF｜30° 弧推尊严爆发·参考视频版（模式：V-Ref｜建议时长：10s｜状态：S1｜输出：MOV/MP4｜可选高潮变体）", "badge": "V-Ref", "badgeTone": "muted", "anchor": false, "bind": "1 @小屿实景近景母帧 + 2 @小屿面部特写 + 3 @小屿单人图 + 4 @VREF_M2V306弧推参考 + 5 @小屿干声_爆发", "check": "显式限定 @VREF_M2V306弧推参考 仅迁移动作弧推轨迹与呼吸停顿节奏；若人脸风控拦截，先转纯白 3D 白模视频再绑。", "prompt": "@小屿实景近景母帧 为开场首帧起点，参考 @小屿面部特写 与 @小屿单人图 锁定8岁男孩小屿（浅藏青拼浅灰插肩长袖卫衣、泛红眼眶与左颊湿润泪痕）面部肌理与身形连戏；显式指定仅参考 @VREF_M2V306弧推参考 的顺时针30度弧推运镜轨迹、推近缓动曲线与换气停顿节拍，不复制其背景环境、光影色调与原片人物外貌；全程人声紧锁 @小屿干声_爆发 驱动。16:9横屏，ARRI Alexa Mini LF实拍电影质感，Kodak 500T夜间细微胶片颗粒，完整延续 @小屿实景近景母帧 深暗墙面与微弱暖光小台灯，头顶暖黄暗光压亮小屿额颊与泪光，左侧大面积留白沉入冷灰暗影；小屿稳居画面右侧三分之一、双手在框下握拳不遮面，下颌微颤紧咬、全程无笑意、眼神自然正常且始终盯画外左侧不看镜头。\n[0s-3s] 依循 @VREF_M2V306弧推参考 运镜起势，机位由50mm微仰近景顺时针滑出约30度平缓弧线边推边升，前0.3秒深吸气蓄力后借 @小屿干声_爆发 朝画外左呐喊：{一桌菜全都是我妈做的！}\n[3s-6s] 贴合 @VREF_M2V306弧推参考 弧推缓动曲线收紧景别，小屿急吸湿气、眼眶盈泪下唇细颤喊出：{可以不买蛋糕，可以不要礼物，}\n[6s-10s] 弧推至85mm眼平大特写并将人物略向画幅中右侧收拢，右脸缘与底缘留足暗部安全空间，重音咬死喊出：{但是最起码的尊重得有吧！}第9秒闭唇轻颤，热泪沿左颊滚落定格1秒余韵。\n全程保留<夜色室内底噪、急促哭腔喘息与衣领微响>。全程无背景音乐，无字幕，无水印，画面流畅无闪烁，五官与光影前后一致。"}]};
+    const STORAGE_KEY = 'ai_vedio_v3_wb_' + DATA.sourceFile;
+    let doneMap = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    const totalCount = DATA.images.length + DATA.videos.length;
+
+    function updateProgress() {
+      const done = Object.values(doneMap).filter(Boolean).length;
+      document.getElementById('progress-count').textContent = `${done} / ${totalCount}`;
+    }
+
+    function toneClasses(tone) {
+      if (tone === 'success') return 'bg-[var(--card)] text-[var(--success)] border border-[var(--success)]';
+      if (tone === 'warning') return 'bg-[var(--card)] text-[var(--warning)] border border-[var(--warning)]';
+      if (tone === 'primary') return 'bg-[var(--primary)] text-[var(--primary-foreground)]';
+      return 'bg-[var(--content)] text-[var(--muted-foreground)] border border-[var(--border)]';
+    }
+
+    function createCard(item, meta1Label, meta2Label) {
+      const card = document.createElement('section');
+      card.className = 'bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 space-y-3';
+
+      const header = document.createElement('div');
+      header.className = 'flex items-start justify-between gap-3 flex-wrap';
+
+      const left = document.createElement('div');
+      left.className = 'flex items-center gap-2.5 flex-wrap';
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = Boolean(doneMap[item.id]);
+      cb.className = 'w-4 h-4 accent-[var(--primary)] cursor-pointer';
+      cb.addEventListener('change', () => {
+        doneMap[item.id] = cb.checked;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(doneMap));
+        updateProgress();
+      });
+
+      const h3 = document.createElement('h3');
+      h3.className = 'text-sm font-semibold';
+      h3.textContent = item.title;
+
+      const badge = document.createElement('span');
+      badge.className = `px-2 py-0.5 text-xs rounded-full font-medium ${toneClasses(item.badgeTone)}`;
+      badge.textContent = item.badge;
+
+      const lenEl = document.createElement('span');
+      lenEl.className = 'text-[11px] text-[var(--muted-foreground)] tabular-nums';
+      lenEl.textContent = `${item.prompt.replace(/\s+/g, '').length} 字`;
+
+      left.append(cb, h3, badge, lenEl);
+
+      const copyBtn = document.createElement('button');
+      copyBtn.type = 'button';
+      copyBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 transition shrink-0 cursor-pointer';
+      copyBtn.textContent = '复制 Prompt';
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(item.prompt);
+        } catch {
+          const ta = document.createElement('textarea');
+          ta.value = item.prompt;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        copyBtn.textContent = '已复制 ✓';
+        setTimeout(() => { copyBtn.textContent = '复制 Prompt'; }, 1500);
+      });
+
+      header.append(left, copyBtn);
+
+      const meta = document.createElement('div');
+      meta.className = 'space-y-1 text-xs text-[var(--muted-foreground)]';
+      const d1 = document.createElement('div');
+      d1.innerHTML = `<span class="font-semibold text-[var(--foreground)]">${meta1Label}：</span>`;
+      d1.append(document.createTextNode(item.bind));
+      const d2 = document.createElement('div');
+      d2.innerHTML = `<span class="font-semibold text-[var(--foreground)]">${meta2Label}：</span>`;
+      d2.append(document.createTextNode(item.check));
+      meta.append(d1, d2);
+
+      const pre = document.createElement('pre');
+      pre.className = 'bg-[var(--content)] border border-[var(--border)] rounded-lg p-3 text-xs leading-relaxed whitespace-pre-wrap break-words font-sans select-all text-[var(--foreground)]';
+      pre.textContent = item.prompt;
+
+      card.append(header, meta, pre);
+      return card;
+    }
+
+    function renderAll() {
+      const onlyAnchors = document.getElementById('only-anchors').checked;
+      const vidPanel = document.getElementById('panel-videos');
+      const imgPanel = document.getElementById('panel-images');
+      vidPanel.innerHTML = '';
+      imgPanel.innerHTML = '';
+
+      const vList = onlyAnchors ? DATA.videos.filter(x => x.anchor) : DATA.videos;
+      const iList = onlyAnchors ? DATA.images.filter(x => x.anchor) : DATA.images;
+
+      vList.forEach(v => vidPanel.appendChild(createCard(v, '即梦绑定参考', '验收与剪映备注')));
+      iList.forEach(i => imgPanel.appendChild(createCard(i, '绑定参考与画幅', '验收要点')));
+    }
+
+    function switchTab(name) {
+      ['videos', 'images'].forEach(t => {
+        document.getElementById(`panel-${t}`).classList.toggle('hidden', t !== name);
+      });
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        const active = btn.dataset.tab === name;
+        btn.className = `tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition cursor-pointer ${
+          active
+            ? 'bg-[var(--primary)] text-[var(--primary-foreground)]'
+            : 'bg-[var(--card)] text-[var(--muted-foreground)] border border-[var(--border)] hover:text-[var(--foreground)]'
+        }`;
+      });
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+    document.getElementById('only-anchors').addEventListener('change', renderAll);
+    document.getElementById('reset-progress').addEventListener('click', () => {
+      doneMap = {};
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(doneMap));
+      renderAll();
+      updateProgress();
+    });
+
+    renderAll();
+    switchTab('videos');
+    updateProgress();
+  </script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+{
+  "schema_version": "3.0",
+  "project_id": "mama-birthday",
+  "title": "今天谁过生日",
+  "primary_model": "2.5",
+  "fallback_model": "2.0",
+  "genre_preset": "presets/genre_realistic_drama.md",
+  "platform_preset": "presets/platform_douyin_letterbox.md",
+  "current_state": "S1",
+  "removed_objects": [
+    "清蒸鱼",
+    "鱼盘",
+    "鱼位"
+  ],
+  "face_trust_policy": {
+    "same_account_required": true,
+    "window_days": 30,
+    "external_edit_ban": "严禁导出至外部PS/美图压缩后再回传即梦"
+  },
+  "assets": {
+    "风格光影锚_餐厅夜": {
+      "id": "STYLE-DINING-NIGHT",
+      "type": "STYLE-REF",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "03_独立空景与风格锚/STYLE-DINING-NIGHT.png"
+    },
+    "清蒸鱼道具图": {
+      "id": "PROP-01",
+      "type": "PROP",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "05_道具与定妆截帧/PROP-01.png"
+    },
+    "餐厅夜景空景": {
+      "id": "SCENE-DINING-NIGHT",
+      "type": "SCENE",
+      "state": "S0",
+      "scope": "image_only",
+      "path": "03_独立空景与风格锚/SCENE-DINING-NIGHT.png"
+    },
+    "餐厅夜景_S1无鱼": {
+      "id": "SCENE-DINING-NIGHT-S1",
+      "type": "SCENE",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "03_独立空景与风格锚/SCENE-DINING-NIGHT-S1.png"
+    },
+    "小屿三视图母档": {
+      "id": "CHAR-BASE-R01",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R01.png"
+    },
+    "小屿单人图": {
+      "id": "CHAR-VID-R01",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R01.png"
+    },
+    "小屿面部特写": {
+      "id": "CHAR-FACE-R01",
+      "type": "CHAR-FACE",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-FACE-R01.png"
+    },
+    "爸爸三视图母档": {
+      "id": "CHAR-BASE-R02",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R02.png"
+    },
+    "爸爸单人图": {
+      "id": "CHAR-VID-R02",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R02.png"
+    },
+    "奶奶三视图母档": {
+      "id": "CHAR-BASE-R03",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R03.png"
+    },
+    "奶奶单人图": {
+      "id": "CHAR-VID-R03",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R03.png"
+    },
+    "奶奶面部特写": {
+      "id": "CHAR-FACE-R03",
+      "type": "CHAR-FACE",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-FACE-R03.png"
+    },
+    "爷爷单人图": {
+      "id": "CHAR-VID-R04",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R04.png"
+    },
+    "爷爷面部特写": {
+      "id": "CHAR-FACE-R04",
+      "type": "CHAR-FACE",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-FACE-R04.png"
+    },
+    "姑姑单人图": {
+      "id": "CHAR-VID-R05",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R05.png"
+    },
+    "妈妈三视图母档": {
+      "id": "CHAR-BASE-R06",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R06.png"
+    },
+    "妈妈单人图": {
+      "id": "CHAR-VID-R06",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R06.png"
+    },
+    "U01A端鱼开场首帧": {
+      "id": "SHOT-START-U01A",
+      "type": "SHOT-START",
+      "state": "S0",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-U01A.png"
+    },
+    "U02A放鱼首帧": {
+      "id": "SHOT-START-U02A",
+      "type": "SHOT-START",
+      "state": "S0",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-U02A.png"
+    },
+    "U03B厨房背影首帧": {
+      "id": "SHOT-START-U03B",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-U03B.png"
+    },
+    "U04B俯拍九菜首帧": {
+      "id": "SHOT-START-U04B",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-U04B.png"
+    },
+    "U05B攥拳特写首帧": {
+      "id": "SHOT-START-U05B",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-U05B.png"
+    },
+    "M2-01首帧": {
+      "id": "SHOT-START-M201",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-M201.png"
+    },
+    "M2-04首帧": {
+      "id": "SHOT-START-M204",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-M204.png"
+    },
+    "M2-05首帧": {
+      "id": "SHOT-START-M205",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-M205.png"
+    },
+    "M2-07首帧": {
+      "id": "SHOT-START-M207",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-M207.png"
+    },
+    "M2-09首帧": {
+      "id": "SHOT-START-M209",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-M209.png"
+    },
+    "小屿实景近景母帧": {
+      "id": "SHOT-MASTER-R01",
+      "type": "SHOT-MASTER",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-MASTER-R01.png"
+    },
+    "爸爸站姿近景母帧": {
+      "id": "SHOT-MASTER-R02-STAND",
+      "type": "SHOT-MASTER",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-MASTER-R02-STAND.png"
+    },
+    "爷爷实景近景母帧": {
+      "id": "SHOT-MASTER-R04",
+      "type": "SHOT-MASTER",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-MASTER-R04.png"
+    },
+    "姑姑实景近景母帧": {
+      "id": "SHOT-MASTER-R05",
+      "type": "SHOT-MASTER",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-MASTER-R05.png"
+    },
+    "爸爸落座近景母帧": {
+      "id": "SHOT-MASTER-R02-SIT",
+      "type": "SHOT-MASTER",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-MASTER-R02-SIT.png"
+    },
+    "act02_m204_layout_sketch_v2": {
+      "id": "GRID-LAYOUT-M204",
+      "type": "GRID-LAYOUT",
+      "state": "S1",
+      "scope": "image_only",
+      "path": "04_机位母帧与首帧/act02_m204_layout_sketch_v2.png"
+    },
+    "act02_m205_layout_sketch_v5": {
+      "id": "GRID-LAYOUT-M205",
+      "type": "GRID-LAYOUT",
+      "state": "S1",
+      "scope": "image_only",
+      "path": "04_机位母帧与首帧/act02_m205_layout_sketch_v5.png"
+    },
+    "小屿干声": {
+      "id": "VOICE-R01",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R01.wav"
+    },
+    "小屿干声_压抑": {
+      "id": "VOICE-R01-TENSE",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R01-TENSE.wav"
+    },
+    "小屿干声_爆发": {
+      "id": "VOICE-R01-BURST",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R01-BURST.wav"
+    },
+    "爸爸干声": {
+      "id": "VOICE-R02",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R02.wav"
+    },
+    "爸爸干声_压抑": {
+      "id": "VOICE-R02-TENSE",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R02-TENSE.wav"
+    },
+    "爸爸干声_爆发": {
+      "id": "VOICE-R02-BURST",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R02-BURST.wav"
+    },
+    "奶奶干声": {
+      "id": "VOICE-R03",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R03.wav"
+    },
+    "VREF_M2V306弧推参考": {
+      "id": "VREF-M2V306",
+      "type": "V-REF",
+      "state": "S1",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VREF-M2V306.mp4"
+    }
+  },
+  "cross_act_masters": [
+    "小屿实景近景母帧",
+    "姑姑实景近景母帧",
+    "爸爸落座近景母帧"
+  ],
+  "voice_stems": {
+    "R01": [
+      "小屿干声",
+      "小屿干声_压抑",
+      "小屿干声_爆发"
+    ],
+    "R02": [
+      "爸爸干声",
+      "爸爸干声_压抑",
+      "爸爸干声_爆发"
+    ],
+    "R03": [
+      "奶奶干声"
+    ]
+  }
+}

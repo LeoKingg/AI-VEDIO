@@ -1,0 +1,138 @@
+{
+  "schema_version": "3.0",
+  "project_id": "_template",
+  "title": "[项目名称]",
+  "primary_model": "2.5",
+  "fallback_model": "2.0",
+  "genre_preset": "presets/genre_realistic_drama.md",
+  "platform_preset": "presets/platform_douyin_letterbox.md",
+  "current_state": "S1",
+  "removed_objects": [
+    "旧铁壶"
+  ],
+  "assets": {
+    "风格光影锚_夜": {
+      "id": "STYLE-01",
+      "type": "STYLE-REF",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "03_独立空景与风格锚/STYLE-01.png"
+    },
+    "主角A三视图母档": {
+      "id": "CHAR-BASE-R01",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R01.png"
+    },
+    "主角A面部特写": {
+      "id": "CHAR-FACE-R01",
+      "type": "CHAR-FACE",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-FACE-R01.png"
+    },
+    "主角A单人图": {
+      "id": "CHAR-VID-R01",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R01.png"
+    },
+    "主角B三视图母档": {
+      "id": "CHAR-BASE-R02",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R02.png"
+    },
+    "主角B面部特写": {
+      "id": "CHAR-FACE-R02",
+      "type": "CHAR-FACE",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-FACE-R02.png"
+    },
+    "主角B单人图": {
+      "id": "CHAR-VID-R02",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R02.png"
+    },
+    "核心道具A": {
+      "id": "PROP-01",
+      "type": "PROP",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "05_道具与定妆截帧/PROP-01.png"
+    },
+    "主场景空景_初始态": {
+      "id": "SCENE-01-S0",
+      "type": "SCENE",
+      "state": "S0",
+      "scope": "image_only",
+      "path": "03_独立空景与风格锚/SCENE-01-S0.png"
+    },
+    "主场景空景_空桌心": {
+      "id": "SCENE-01-S1",
+      "type": "SCENE",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "03_独立空景与风格锚/SCENE-01-S1.png"
+    },
+    "M01母帧_主角A近景": {
+      "id": "SHOT-MASTER-M01",
+      "type": "SHOT-MASTER",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-MASTER-M01.png"
+    },
+    "M02首帧_双人对峙": {
+      "id": "SHOT-START-M02",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "04_机位母帧与首帧/SHOT-START-M02.png"
+    },
+    "第一幕线稿分镜格": {
+      "id": "GRID-LINEART-01",
+      "type": "GRID-LINEART",
+      "state": "S1",
+      "scope": "video_only",
+      "path": "04_机位母帧与首帧/GRID-LINEART-01.png"
+    },
+    "主角A干声_压抑": {
+      "id": "VOICE-R01-TENSE",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R01-TENSE.wav"
+    },
+    "主角B干声_压抑": {
+      "id": "VOICE-R02-TENSE",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R02-TENSE.wav"
+    },
+    "M02成片母版": {
+      "id": "VID-MASTER-M02",
+      "type": "VID-MASTER",
+      "state": "S1",
+      "scope": "edit_only",
+      "path": "07_视频成片/v01/M02-SEQ_v01_PASS.mov"
+    }
+  },
+  "cross_act_masters": [
+    "M01母帧_主角A近景"
+  ],
+  "voice_stems": {
+    "R01": [
+      "主角A干声_压抑"
+    ],
+    "R02": [
+      "主角B干声_压抑"
+    ]
+  }
+}

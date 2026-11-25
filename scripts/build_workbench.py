@@ -104,6 +104,10 @@ def render_html(data: Dict[str, Any]) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title_esc}｜V3.0 执行工作台</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .hidden {{ display: none !important; }}
+    body {{ font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
+  </style>
 </head>
 <body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-4 md:p-6 m-0">
   <div class="max-w-5xl mx-auto space-y-5">
@@ -149,7 +153,19 @@ def render_html(data: Dict[str, Any]) -> str:
   <script>
     const DATA = {data_json};
     const STORAGE_KEY = 'ai_vedio_v3_wb_' + DATA.sourceFile;
-    let doneMap = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{{}}');
+    function loadDoneMap() {{
+      try {{
+        return JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '{{}}');
+      }} catch {{
+        return {{}};
+      }}
+    }}
+    function saveDoneMap(map) {{
+      try {{
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+      }} catch {{}}
+    }}
+    let doneMap = loadDoneMap();
     const totalCount = DATA.images.length + DATA.videos.length;
 
     function updateProgress() {{
@@ -179,7 +195,7 @@ def render_html(data: Dict[str, Any]) -> str:
       cb.className = 'w-4 h-4 accent-[var(--primary)] cursor-pointer';
       cb.addEventListener('change', () => {{
         doneMap[item.id] = cb.checked;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(doneMap));
+        saveDoneMap(doneMap);
         updateProgress();
       }});
 
@@ -268,7 +284,7 @@ def render_html(data: Dict[str, Any]) -> str:
     document.getElementById('only-anchors').addEventListener('change', renderAll);
     document.getElementById('reset-progress').addEventListener('click', () => {{
       doneMap = {{}};
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(doneMap));
+      saveDoneMap(doneMap);
       renderAll();
       updateProgress();
     }});

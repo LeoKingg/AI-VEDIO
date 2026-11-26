@@ -308,6 +308,42 @@ class TestLintPromptV3(unittest.TestCase):
         )
         self.assertEqual([], lp.lint_unit(vid_unit, "2.5"))
 
+    def test_rl31_blocks_voice_and_dialogue_in_faceless_shot(self):
+        bad_vid = _make_video(
+            "A1-05",
+            "@A1-05首帧 为首帧，上方暖黄吊灯照亮桌面。俯拍桌面五副碗筷，男孩右手臂平伸入，使用 @小屿干声_压抑 问道：{一桌十个菜还不够吃吗？}全程无背景音乐，无字幕，无水印。",
+            declared=["A1-05首帧", "小屿干声_压抑"],
+            duration=5,
+        )
+        issues = lp.lint_unit(bad_vid, "2.5")
+        self.assertTrue(any(i.rule_id == "RL-31" and i.severity == "P0" for i in issues))
+
+        clean_vid = _make_video(
+            "A1-05",
+            "@A1-05首帧 为首帧，上方暖黄吊灯照亮桌面。俯拍桌面五副碗筷，男孩右手臂平伸入指点空桌心，保留<衣袖擦空气微响与底噪>。全程无背景音乐，无字幕，无水印。",
+            declared=["A1-05首帧"],
+            duration=5,
+        )
+        self.assertEqual([], lp.lint_unit(clean_vid, "2.5"))
+
+    def test_rl32_flags_palette_downgrade_and_char_sheet_margins(self):
+        bad_start = _make_image(
+            "SHOT-START-M09",
+            "16:9横屏，35mm中近景剧照。@主角设定卡 提供人物相貌，@餐厅夜景_S1 提供餐桌餐椅、餐边柜木纹与暖暗光比。主角站居左侧，暖黄顶光照亮桌面，无字无水印。",
+            declared=["主角设定卡", "餐厅夜景_S1"],
+            is_kf=True,
+        )
+        issues_start = lp.lint_unit(bad_start, "2.5")
+        self.assertTrue(any(i.rule_id == "RL-32" and i.severity == "P1" for i in issues_start))
+
+        bad_char = _make_image(
+            "CHAR-01",
+            "16:9横屏，#555A64纯灰背景，30度暖侧光。人物分左右双区呈现：左半幅全身站立，右半幅占50%以上纯头特写，单人无文字无分隔线。",
+            is_kf=False,
+        )
+        issues_char = lp.lint_unit(bad_char, "2.5")
+        self.assertTrue(any(i.rule_id == "RL-32" and i.severity == "P1" for i in issues_char))
+
 
 if __name__ == "__main__":
     unittest.main()

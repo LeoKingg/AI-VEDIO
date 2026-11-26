@@ -130,6 +130,11 @@ LIGHTING_PRESENCE_PATTERN = re.compile(
 IMAGE_PREFIXES = ("CHAR-", "SHOT-START-", "SHOT-MASTER-", "KEYFRAME-", "SCENE-", "PROP-", "GRID-", "STYLE-")
 KEYFRAME_STILL_PREFIXES = ("SHOT-START-", "SHOT-MASTER-", "KEYFRAME-")
 
+FACELESS_SHOT_PATTERN = re.compile(r"俯拍桌面|高角度俯拍|极近手部特写|纯手部|头肩均处于画幅之外|头部均处于画幅之外|无人物面部|禁止出现人物头部|不出现任何人脸|严禁出现人物面部|不可出现人物面部")
+VOICE_ASSET_PATTERN = re.compile(r"(?:干声|VOICE[-_]?REF)", re.IGNORECASE)
+SPATIAL_INHERIT_PALETTE_PATTERN = re.compile(r"(?:提供|延续|继承)[^。；\n]{0,28}(?:木纹|材质|光比|门框)")
+SPATIAL_LAYOUT_LOCK_PATTERN = re.compile(r"布局|透视|摆位|方位|结构")
+
 
 @dataclass
 class PromptUnit:
@@ -491,6 +496,37 @@ def _lint_image(unit: PromptUnit) -> List[Issue]:
                     )
                 )
 
+    # RL-32: Spatial layout lock for wide/medium structural stills & CHAR-SHEET seamless margins
+    if uid.upper().startswith(("SHOT-START", "KEYFRAME")):
+        has_scene_ref = any(
+            SCENE_TOKEN_PATTERN.search(a) or "餐厅" in a or "场景" in a
+            for a in unit.declared_assets
+        )
+        m_palette = SPATIAL_INHERIT_PALETTE_PATTERN.search(body)
+        if has_scene_ref and m_palette and not SPATIAL_LAYOUT_LOCK_PATTERN.search(body):
+            issues.append(
+                Issue(
+                    unit=uid,
+                    severity="P1",
+                    rule_id="RL-32",
+                    message="空间首帧把 @SCENE 弱化为材质/光比色卡，未显式锁定同房间空间布局与门柜桌椅摆位（ERR-031）",
+                    excerpt=m_palette.group(0),
+                    suggestion="精简冗余词并改为“继承 @实景空景 同房间空间布局、门柜桌椅摆位与暗暖光比”",
+                )
+            )
+
+    if uid.upper().startswith("CHAR-") and "双区" in body and "留白" not in body:
+        issues.append(
+            Issue(
+                unit=uid,
+                severity="P1",
+                rule_id="RL-32",
+                message="角色设定卡含“双区”且缺左右占比与鞋底留白锁，易诱发分隔线或右图挤压左侧全身（ERR-031）",
+                excerpt="双区",
+                suggestion="改为“横向无缝并排：左半幅占约40%画宽留足头顶与鞋底纯灰留白，右半幅占约55%画宽无缝融入纯灰背景”",
+            )
+        )
+
     return issues
 
 
@@ -715,6 +751,23 @@ def _lint_video(unit: PromptUnit, model: str) -> List[Issue]:
                     message=f"台词密度偏高（{spoken_chars} 字 / {unit.declared_duration}s = {rate:.1f} 字/秒 > 4.8），易抢拍或口型漂移",
                     excerpt=" / ".join(dialogues[:2]),
                     suggestion="适当延长生成秒数（留出 0.8–1.2s 呼吸余量）或精简台词",
+                )
+            )
+
+    # RL-31: Faceless / overhead POV video units must not bind voice refs or {dialogue} (ERR-033)
+    m_faceless = FACELESS_SHOT_PATTERN.search(body)
+    if m_faceless:
+        voice_toks = [tok for tok in all_assets if VOICE_ASSET_PATTERN.search(tok)]
+        if dialogues or voice_toks:
+            excerpt = f"@{voice_toks[0]}" if voice_toks else f"{{{dialogues[0]}}}"
+            issues.append(
+                Issue(
+                    unit=uid,
+                    severity="P0",
+                    rule_id="RL-31",
+                    message="无脸镜头视频端违规绑定 @干声 或写入 {台词}，易诱发模型拉远或虚构嘴巴做口型（ERR-033）",
+                    excerpt=excerpt,
+                    suggestion="走 Route C 后期贴轨：视频 Prompt 删除 @干声 与 {台词}，仅保留动作与物理拟音",
                 )
             )
 

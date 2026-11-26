@@ -16,10 +16,10 @@
     "少了一盘鱼"
   ],
   "asset_stats": {
-    "total_registered": 27,
-    "static_images": 22,
+    "total_registered": 28,
+    "static_images": 23,
     "voice_refs": 5,
-    "first_wave_static_anchors": 18,
+    "first_wave_static_anchors": 19,
     "char_sheets": 5
   },
   "assets": {
@@ -84,11 +84,26 @@
       "scope": "video_and_image",
       "path": "05_道具与定妆截帧/PROP-02.png"
     },
+    "餐厅空间线稿": {
+      "id": "SCENE-LAYOUT-01",
+      "type": "SCENE-LAYOUT",
+      "token": "@餐厅空间线稿",
+      "state": "ANY",
+      "scope": "image_only",
+      "note": "仅作 SCENE-01-S0 生图首顺位骨架并清除黑线白底，严禁进入视频",
+      "path": "03_独立空景与风格锚/SCENE-LAYOUT-01.png"
+    },
     "餐厅夜景_S0有鱼": {
       "id": "SCENE-01-S0",
       "type": "SCENE",
       "state": "S0",
       "scope": "image_only",
+      "depends_on": [
+        "@餐厅空间线稿",
+        "@清蒸鱼盘",
+        "@红苹果果盘",
+        "@风格光影锚_夜"
+      ],
       "path": "03_独立空景与风格锚/SCENE-01-S0.png"
     },
     "餐厅夜景_S1无鱼": {

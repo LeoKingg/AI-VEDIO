@@ -363,6 +363,20 @@ class TestLintPromptV3(unittest.TestCase):
         issues_char = lp.lint_unit(bad_char, "2.5")
         self.assertTrue(any(i.rule_id == "RL-32" and i.severity == "P1" for i in issues_char))
 
+    def test_rl34_flags_decimal_seconds_bundled_sfx_and_redundant_params(self):
+        bad_vid = _make_video(
+            "A1-01",
+            "16:9横屏，上方暖黄吊灯照亮男主侧颊。\n"
+            "[0s-4s] 男主停顿0.8秒后说话：{别动。}\n"
+            "全程保留<拍桌声、瓷碗震响、脚步声与呼吸声>。全程无背景音乐，无字幕，无水印，画面流畅无闪烁。",
+            duration=4,
+        )
+        issues = lp.lint_unit(bad_vid, "2.5")
+        rl34_msgs = [i.message for i in issues if i.rule_id == "RL-34" and i.severity == "P1"]
+        self.assertTrue(any("小数秒" in m for m in rl34_msgs))
+        self.assertTrue(any("音效" in m for m in rl34_msgs))
+        self.assertTrue(any("冗余" in m for m in rl34_msgs))
+
 
 if __name__ == "__main__":
     unittest.main()

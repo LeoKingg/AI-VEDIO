@@ -136,6 +136,9 @@ FACELESS_SHOT_PATTERN = re.compile(r"俯拍桌面|高角度俯拍|极近手部�
 VOICE_ASSET_PATTERN = re.compile(r"(?:干声|VOICE[-_]?REF)", re.IGNORECASE)
 SPATIAL_INHERIT_PALETTE_PATTERN = re.compile(r"(?:提供|延续|继承)[^。；\n]{0,28}(?:木纹|材质|光比|门框)")
 SPATIAL_LAYOUT_LOCK_PATTERN = re.compile(r"布局|透视|摆位|方位|结构|局部[^。；\n]{0,16}(?:虚化|素墙|餐边柜|桌面)|裁出画外|平桌微仰")
+DECIMAL_SEC_PATTERN = re.compile(r"(?<![A-Za-z0-9.])\d+\.\d+\s*(?:s|秒)")
+SFX_BLOCK_PATTERN = re.compile(r"<([^<>]+)>")
+VIDEO_REDUNDANT_PARAM_PATTERN = re.compile(r"16:9横屏|9:16竖屏|画面流畅无闪烁")
 
 
 @dataclass
@@ -730,7 +733,10 @@ def _lint_video(unit: PromptUnit, model: str) -> List[Issue]:
         )
 
     char_count = len(re.sub(r"\s+", "", body))
-    max_len = 650 if model == "2.0" else 950
+    if model == "2.0":
+        max_len = 550
+    else:
+        max_len = 700 if (unit.declared_duration and unit.declared_duration >= 15) else 550
     if char_count < 60:
         issues.append(
             Issue(
@@ -748,9 +754,9 @@ def _lint_video(unit: PromptUnit, model: str) -> List[Issue]:
                 unit=uid,
                 severity="P1",
                 rule_id="RL-07",
-                message=f"正文偏长（{char_count} 字 > {max_len} 字建议上限），过密塞入易致注意力稀释",
+                message=f"正文偏长（{char_count} 字 > {max_len} 字建议上限，官方建议 ≤500 汉字），过密塞入易致注意力稀释",
                 excerpt=f"总字数={char_count}",
-                suggestion="遵循任务分配法删除图中已锁定冗余描写，保持高信噪比",
+                suggestion="遵循任务分配法删除图中已锁定静态复述与冗长前置声明，保持高信噪比",
             )
         )
 
@@ -780,7 +786,7 @@ def _lint_video(unit: PromptUnit, model: str) -> List[Issue]:
                     rule_id="RL-28",
                     message=f"台词密度偏高（{spoken_chars} 字 / {unit.declared_duration}s = {rate:.1f} 字/秒 > 4.8），易抢拍或口型漂移",
                     excerpt=" / ".join(dialogues[:2]),
-                    suggestion="适当延长生成秒数（留出 0.8–1.2s 呼吸余量）或精简台词",
+                    suggestion="适当延长生成秒数（留出 ~1s 整数气口余量）或精简台词",
                 )
             )
 
@@ -798,6 +804,49 @@ def _lint_video(unit: PromptUnit, model: str) -> List[Issue]:
                     message="无脸镜头视频端违规绑定 @干声 或写入 {台词}，易诱发模型拉远或虚构嘴巴做口型（ERR-033）",
                     excerpt=excerpt,
                     suggestion="走 Route C 后期贴轨：视频 Prompt 删除 @干声 与 {台词}，仅保留动作与物理拟音",
+                )
+            )
+
+    # RL-34: Official Seedance 2.5 timing, inline single-SFX, and redundant parameter checks (ERR-037)
+    if model == "2.5":
+        body_visual = DIALOGUE_BLOCK_PATTERN.sub("", body)
+        dec_match = DECIMAL_SEC_PATTERN.search(body_visual)
+        if dec_match:
+            issues.append(
+                Issue(
+                    unit=uid,
+                    severity="P1",
+                    rule_id="RL-34",
+                    message="Seedance 2.5 以 1 秒整数为基本单位，正文含小数秒微时序易失效或自相矛盾（ERR-037）",
+                    excerpt=dec_match.group(0),
+                    suggestion="改为整数秒切片或自然节奏描写（如“停顿一拍”“留足一秒静默”）",
+                )
+            )
+
+        for m_sfx in SFX_BLOCK_PATTERN.finditer(body):
+            sfx_text = m_sfx.group(1)
+            if sfx_text.count("、") >= 2:
+                issues.append(
+                    Issue(
+                        unit=uid,
+                        severity="P1",
+                        rule_id="RL-34",
+                        message="单个 <音效> 打包了 3 项以上跨时刻/跨切镜音效，易导致声音错位（ERR-037）",
+                        excerpt=f"<{sfx_text[:28]}...>" if len(sfx_text) > 28 else f"<{sfx_text}>",
+                        suggestion="拆分为单个独立 <音效> 并内嵌到对应动作的时间戳切片中",
+                    )
+                )
+
+        m_red = VIDEO_REDUNDANT_PARAM_PATTERN.search(body_visual)
+        if m_red:
+            issues.append(
+                Issue(
+                    unit=uid,
+                    severity="P1",
+                    rule_id="RL-34",
+                    message=f"视频正文含冗余画幅参数或泛化尾句「{m_red.group(0)}」（ERR-037）",
+                    excerpt=m_red.group(0),
+                    suggestion="画幅由平台面板指定，删除冗余词并用首尾双写强禁 BGM 枚举替代泛化尾句",
                 )
             )
 

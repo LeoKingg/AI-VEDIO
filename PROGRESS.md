@@ -2,7 +2,7 @@
 
 > **定位**：本仓库跨对话、跨阶段的**持久化里程碑与活跃剧目进度台账**。
 > **规范去重声明（V3.0 铁律）**：本文件**只记录里程碑、实战进度与后续计划，不再承载任何规范细则**；所有通用制片规范统一以 `docs/`、`presets/` 与 `skills/` 为唯一事实来源（SSOT）。
-> **最后更新**：2026-11-25
+> **最后更新**：2026-11-26
 
 ---
 
@@ -11,39 +11,37 @@
 | 阶段 | 内容 | 当前状态 | 关键提交 / 说明 |
 | :---: | :--- | :---: | :--- |
 | **Phase 1** | 搭建 V2.0 三层架构、`docs/`、4 大初代 Skills、`lint_prompt.py` 与 `_template` | `已完成` | `a1e7eca` |
-| **Phase 2A** | Pilot 剧目《今天谁过生日》（`mama-birthday`）**第一幕**全套资产、Prompt 与 12 条成片验收 | `主流程已跑通` | `10/12` 可用/微裁可用；待补 `U03B` 重抽与终剪回填 |
-| **Phase 2B** | 《今天谁过生日》**第二幕**试水并演进至 V2.4 闭唇实景母帧方案（24 块 Prompt + 零失步工作台） | `已完成（V2.x 基线封存）` | `7351f72`（保留作 V2.x 历史基线对照，不覆盖） |
+| **Phase 2A** | Pilot 剧目《今天谁过生日》（`mama-birthday`）**第一幕**全套资产、Prompt 与 12 条成片验收 | `已封存对照` | `10/12` 可用/微裁可用；保留作 V2.0 历史对照 |
+| **Phase 2B** | 《今天谁过生日》**第二幕**试水并演进至 V2.4 闭唇实景母帧方案（24 块 Prompt + 零失步工作台） | `已封存对照` | `7351f72`（保留作 V2.x 历史基线对照，不覆盖） |
 | **Phase 3** | **V3.0 工业化制片系统重构**：`Seedance 2.5` 主力切换 + `STUDIO_CONSTITUTION` + `SOP_V3.0` + 4 个可插拔 `presets/` + **7 个专家 Skills** + 双目标跨文件 `lint_prompt.py` + `build_workbench.py` + `init_project.py` + **7 Skills 全局注册** | `已完成（已推送 origin/main）` | V2.4 全部实战经验与官方 2.5 机制已 100% 正式合入 `docs/` & `skills/` |
-| **Phase 4** | **V3.0 首次七大专家实战验证（Option A2）**：用 3 波次 7-Agent 流水线 + `Seedance 2.5` 完成《今天谁过生日》**第二幕 `SEQ-Multi` 完整重构**（含 13 张生图 + 7 条视频 `20` 单元、`manifest.json` 与交互工作台） | `双审 PASS（待首轮 7 图 + 3 视频 480p 实测）` | 11 镜/10 缝压缩至 6 单元/5 缝；全套 20 单元 `P0=0, P1=0` |
+| **Phase 4** | **V3.0 首次七大专家实战验证（Option A2）**：用 3 波次 7-Agent 流水线 + `Seedance 2.5` 完成 `mama-birthday` **第二幕 `SEQ-Multi` 重构** | `已封存对照` | 验证 5 模路由可行后，启动 `mama-birthday-v3` 从零重制 |
+| **Phase 5** | **V3.1 `CHAR-SHEET` 一卡双区资产瘦身 + `mama-birthday-v3` 第一幕从零开机**：合入 `ERR-029`（禁代写）与 `ERR-030`（单卡双区淘汰三锚）；5 角色 15 张图压缩为 `5` 张 `CHAR-SHEET`（偏重方案 A），第一幕 **30 单元（22 生图 + 8 视频）** 全数双审 `PASS` 并编译工作台 | `双审 PASS（待首轮 18 图 + 6 视频实测）` | `fa29f71` / `86ccfd9` → V3.1 升级待提交 |
 
 ---
 
-## 二、V2.4 历史实战经验合入结项清单（已全部清账入库 V3.0）
+## 二、V2.4 / V3.1 实战经验合入结项清单（已全部清账入库）
 
 - [x] **第 0.5 步《剧情与改编讨论分镜表》**：已正式合入 `docs/SOP_V3.0.md`、`skills/director-showrunner/` 与 `projects/_template/00_project_brief.md`。
 - [x] **五模式生成路由（告别单镜拼接）与 `Seedance 2.5` 主力化**：已正式合入 `docs/SOP_V3.0.md`、`skills/seedance-compiler/references/profile-seedance-2.5.md`（保留 `profile-seedance-2.0.md` 降级兼容）。
-- [x] **彻底禁绝外来 `STYLE-REF` 进视频 + `SHOT-MASTER` 闭唇实景母帧 + `CHAR-FACE 70%` 双锚 + 30 天写实人脸信任窗**：已合入 `docs/VISUAL_BIBLE_GUIDE.md`、`skills/art-asset-pipeline/` 与 `lint_prompt.py`（`RL-18` P0 拦截）。
+- [x] **彻底禁绝外来 `STYLE-REF` 进视频 + `SHOT-MASTER` 闭唇实景母帧 + V3.1 `CHAR-SHEET` 一卡双区（1 人 1 张淘汰三连跳）+ 30 天写实人脸信任窗**：已合入 `docs/VISUAL_BIBLE_GUIDE.md`、`skills/art-asset-pipeline/`、`skills/seedance-compiler/` 与 `lint_prompt.py`（`RL-06 / RL-18`）。
 - [x] **防空椅穿帮 / 视锥邻座守恒 / 反粉红大象 / 双层坐标系分离（360°→2D） / 身体-头部-视线三层锁**：已合入 `docs/CINEMATOGRAPHY_AND_TRANSITIONS.md`、`skills/cinematography-blocking/`、`manifest.json` 与 `lint_prompt.py`（`RL-26 / RL-27` P0 拦截）。
 - [x] **Seedream 5.5 极简正向规范（`≤260/280` 字、零图文对抗、否定词 `≤1`、人物先于空景）**：已合入 `skills/art-asset-pipeline/` 与 `lint_prompt.py`（`RL-21` P0 拦截）。
 - [x] **官方声音四分隔符 `{台词}` `<音效>` `(音乐)` `【字幕】`、防老年数字人三铁律、全身动力学微动链、情绪极性双锚与跨幕边界交接卡**：已合入 `skills/performance-sound-director/`、`skills/redline-auditor/` 与 `projects/_template/03_act_handbook_template.md`。
 - [x] **480p 试样→1080p 精修 + 2-Strike 止损律 + 7 维质检卡 + L1–L4 救片树 + 五步院线化 Finishing（-14 LUFS 四轨混音、前切 6 帧后切 1 帧、`0.15s` 淡出、色彩匹配先于 LUT）**：已合入 `docs/STUDIO_CONSTITUTION.md`、`docs/POST_JIANYING_GUIDE.md` 与 `skills/post-qa-finishing/`。
-- [x] **全套 7 个 V3.0 Skills 全局注册（`save_skill`）**：已完成注册与验证。
-- [x] **推送至 GitHub 远端（`origin/main`）**：已推送至 `origin/main`（后续本地新提交按需同步推送）。
+- [x] **全套 7 个 V3.x Skills 全局同步 + `ERR-029` / `ERR-030` 铁律入库**。
 
 ---
 
-## 三、活跃剧目进度：《今天谁过生日》（`projects/mama-birthday/`）
+## 三、当前活跃剧目进度：《今天谁过生日》V3.1 从零重制版（`projects/mama-birthday-v3/`）
 
-### 第一幕（V2.0 样板闭环收尾中）
-- [x] 全套资产与 12 条成片人工验收完成（7 条直接可用 + 3 条剪映微裁可用；`U03B` 必重抽、`U02B-1` 建议局部编辑/重抽）。
-- [ ] 待收齐 `U03B`（及 `U02B-1` `E-Edit` 修复）成片后，按 V3.0 7 维台账回填 `05_test_log.md` 与 `04_post_jianying_memo.md`。
+> 历史 V2.x/A2 试水基线目录 `projects/mama-birthday/` 保持原样封存不修改，供横向对照。
 
-### 第二幕（V2.4 基线封存 + V3.0 `Seedance 2.5` 完整重拍就绪）
-- [x] V2.4 基线 [03_act02_handbook.md](projects/mama-birthday/03_act02_handbook.md)（24 块 Prompt）保留封存（`7351f72`）。
-- [x] **V3.0 A2 完整重构版 [03_act02_v3_seedance25_handbook.md](projects/mama-birthday/03_act02_v3_seedance25_handbook.md)**（13 张 `Seedream 5.5` 生图 + 7 条 `Seedance 2.5` 视频共 `20` 单元）+ [`manifest.json`](projects/mama-birthday/manifest.json) 已跑通双审 `PASS`（`P0=0, P1=0`）。
-- [ ] **下一步实测**：继承第一幕 5 项公共底座 → 先出首轮 **7 张锚点图** → Pre-Vis → **`480p` 实测 3 个视频锚点（`M2V3-01` / `M2V3-03` / `M2V3-06`）**，由站 7 质检后转 `1080p` 与全量生成。
+### 第一幕（V3.1 一卡双区瘦身定稿，待即梦开机实测）
+- [x] 全流程 7 工位按 `ERR-029` 分工完成，并由站 3 / 站 2 / 站 5 / 站 1 协同落地 V3.1 `CHAR-SHEET` 单卡双区（偏重方案 A）。
+- [x] 站 6 机械扫描 `lint_prompt.py --model 2.5`（**30 单元 = 22 生图 + 8 视频**）`P0=0, P1=0` + 独立只读隔离盲审 `PASS`。
+- [x] 自动编译零失步网页工作台 [`workbench_act01.html`](projects/mama-birthday-v3/workbench_act01.html)（含首轮锚点过滤：`18 图 + 6 视频`）。
+- [ ] **下一步实测**：在即梦优先生成首轮 **`18` 张锚点图**（含 5 张 `CHAR-SHEET`）→ Pre-Vis → **`480p` 试拍 `6` 个首轮视频锚点**（重点盯防 `A1-06` 零笑意与 `A1-07B` 呼吸停顿，若飘脸则同账号零积分裁切对应 `CHAR-SHEET` 右半幅），验收达标后出 `1080p`。
 
-### 第三幕 ～ 第五幕（全面切换 V3.0 七大专家 + `Seedance 2.5` 生产）
-- [ ] **第三幕**（独立厨房停火解围裙 → 餐厅反问）：先由 `director-showrunner` 产出第 0.5 步剧情讨论表并拍板，再跑 3 波次流水线。
-- [ ] **第四幕**（牵手甩开 → 玄关暖壁灯侧逆光离场）
-- [ ] **第五幕**（方桌冷场 → 纯冷蓝厨房孤锅空镜 → 尾板金句）
+### 第二幕 ～ 第五幕（按第 1 幕实测反馈顺序推进）
+- [ ] **第二幕**：第 1 幕实测验证通过后，依托第 1 幕已冻结的 5 张 `CHAR-SHEET` 与 4 张 `SHOT-MASTER` 无缝续接第 2 幕。
+- [ ] **第三幕 ～ 第五幕**：依 `00_project_brief.md` 大纲逐幕 3 波次流水线展开。

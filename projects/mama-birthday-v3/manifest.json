@@ -15,6 +15,13 @@
     "端走的鱼",
     "少了一盘鱼"
   ],
+  "asset_stats": {
+    "total_registered": 27,
+    "static_images": 22,
+    "voice_refs": 5,
+    "first_wave_static_anchors": 18,
+    "char_sheets": 5
+  },
   "assets": {
     "风格光影锚_夜": {
       "id": "STYLE-01",
@@ -23,110 +30,45 @@
       "scope": "image_only",
       "path": "03_独立空景与风格锚/STYLE-01.png"
     },
-    "小屿三视图母档": {
-      "id": "CHAR-BASE-R01",
-      "type": "CHAR-BASE",
-      "state": "ANY",
-      "scope": "image_only",
-      "path": "01_身份母档/CHAR-BASE-R01.png"
-    },
-    "小屿单人图": {
-      "id": "CHAR-VID-R01",
-      "type": "CHAR-VID",
+    "小屿设定卡": {
+      "id": "CHAR-SHEET-R01",
+      "type": "CHAR-SHEET",
+      "token": "@小屿设定卡",
       "state": "ANY",
       "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-VID-R01.png"
+      "path": "01_角色设定卡/CHAR-SHEET-R01.png"
     },
-    "小屿面部特写": {
-      "id": "CHAR-FACE-R01",
-      "type": "CHAR-FACE",
+    "陈志强设定卡": {
+      "id": "CHAR-SHEET-R02",
+      "type": "CHAR-SHEET",
+      "token": "@陈志强设定卡",
       "state": "ANY",
       "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-FACE-R01.png"
+      "path": "01_角色设定卡/CHAR-SHEET-R02.png"
     },
-    "陈志强三视图母档": {
-      "id": "CHAR-BASE-R02",
-      "type": "CHAR-BASE",
-      "state": "ANY",
-      "scope": "image_only",
-      "path": "01_身份母档/CHAR-BASE-R02.png"
-    },
-    "陈志强单人图": {
-      "id": "CHAR-VID-R02",
-      "type": "CHAR-VID",
+    "奶奶设定卡": {
+      "id": "CHAR-SHEET-R03",
+      "type": "CHAR-SHEET",
+      "token": "@奶奶设定卡",
       "state": "ANY",
       "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-VID-R02.png"
+      "path": "01_角色设定卡/CHAR-SHEET-R03.png"
     },
-    "陈志强面部特写": {
-      "id": "CHAR-FACE-R02",
-      "type": "CHAR-FACE",
+    "姑姑设定卡": {
+      "id": "CHAR-SHEET-R05",
+      "type": "CHAR-SHEET",
+      "token": "@姑姑设定卡",
       "state": "ANY",
       "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-FACE-R02.png"
+      "path": "01_角色设定卡/CHAR-SHEET-R05.png"
     },
-    "奶奶三视图母档": {
-      "id": "CHAR-BASE-R03",
-      "type": "CHAR-BASE",
-      "state": "ANY",
-      "scope": "image_only",
-      "path": "01_身份母档/CHAR-BASE-R03.png"
-    },
-    "奶奶单人图": {
-      "id": "CHAR-VID-R03",
-      "type": "CHAR-VID",
+    "林岚设定卡": {
+      "id": "CHAR-SHEET-R06",
+      "type": "CHAR-SHEET",
+      "token": "@林岚设定卡",
       "state": "ANY",
       "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-VID-R03.png"
-    },
-    "奶奶面部特写": {
-      "id": "CHAR-FACE-R03",
-      "type": "CHAR-FACE",
-      "state": "ANY",
-      "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-FACE-R03.png"
-    },
-    "姑姑三视图母档": {
-      "id": "CHAR-BASE-R05",
-      "type": "CHAR-BASE",
-      "state": "ANY",
-      "scope": "image_only",
-      "path": "01_身份母档/CHAR-BASE-R05.png"
-    },
-    "姑姑单人图": {
-      "id": "CHAR-VID-R05",
-      "type": "CHAR-VID",
-      "state": "ANY",
-      "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-VID-R05.png"
-    },
-    "姑姑面部特写": {
-      "id": "CHAR-FACE-R05",
-      "type": "CHAR-FACE",
-      "state": "ANY",
-      "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-FACE-R05.png"
-    },
-    "林岚三视图母档": {
-      "id": "CHAR-BASE-R06",
-      "type": "CHAR-BASE",
-      "state": "ANY",
-      "scope": "image_only",
-      "path": "01_身份母档/CHAR-BASE-R06.png"
-    },
-    "林岚单人图": {
-      "id": "CHAR-VID-R06",
-      "type": "CHAR-VID",
-      "state": "ANY",
-      "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-VID-R06.png"
-    },
-    "林岚面部特写": {
-      "id": "CHAR-FACE-R06",
-      "type": "CHAR-FACE",
-      "state": "ANY",
-      "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-FACE-R06.png"
+      "path": "01_角色设定卡/CHAR-SHEET-R06.png"
     },
     "清蒸鱼盘": {
       "id": "PROP-01",
@@ -161,6 +103,10 @@
       "type": "SHOT-MASTER",
       "state": "ANY",
       "scope": "video_and_image",
+      "depends_on": [
+        "@陈志强设定卡",
+        "@餐厅夜景_S0有鱼"
+      ],
       "used_in": [
         "A1-01 Cut 2",
         "Act2",
@@ -174,6 +120,10 @@
       "type": "SHOT-MASTER",
       "state": "S1",
       "scope": "video_and_image",
+      "depends_on": [
+        "@奶奶设定卡",
+        "@餐厅夜景_S1无鱼"
+      ],
       "used_in": [
         "A1-04 KF1",
         "A1-06",
@@ -189,6 +139,10 @@
       "type": "SHOT-MASTER",
       "state": "S1",
       "scope": "video_and_image",
+      "depends_on": [
+        "@姑姑设定卡",
+        "@餐厅夜景_S1无鱼"
+      ],
       "used_in": [
         "A1-04 KF3",
         "Act2",
@@ -201,6 +155,10 @@
       "type": "SHOT-MASTER",
       "state": "S1",
       "scope": "video_and_image",
+      "depends_on": [
+        "@小屿设定卡",
+        "@餐厅夜景_S1无鱼"
+      ],
       "used_in": [
         "A1-07B",
         "Act2",
@@ -215,6 +173,11 @@
       "type": "SHOT-START",
       "state": "S0",
       "scope": "video_and_image",
+      "depends_on": [
+        "@小屿设定卡",
+        "@清蒸鱼盘",
+        "@餐厅夜景_S0有鱼"
+      ],
       "used_in": [
         "A1-01 Cut 1"
       ],
@@ -225,6 +188,12 @@
       "type": "SHOT-START",
       "state": "S0",
       "scope": "video_and_image",
+      "depends_on": [
+        "@小屿设定卡",
+        "@清蒸鱼盘",
+        "@红苹果果盘",
+        "@餐厅夜景_S0有鱼"
+      ],
       "used_in": [
         "A1-02"
       ],
@@ -235,9 +204,14 @@
       "type": "SHOT-START",
       "state": "S1",
       "scope": "video_and_image",
+      "depends_on": [
+        "@小屿设定卡",
+        "@餐厅夜景_S1无鱼"
+      ],
       "used_in": [
         "A1-03 Cut 1"
       ],
+      "note": "严禁挂爸爸 CHAR-SHEET（ERR-002）",
       "path": "04_机位母帧与首帧/SHOT-START-A103-1.png"
     },
     "A1-03关键帧_父姑停筷": {
@@ -245,6 +219,11 @@
       "type": "SHOT-START",
       "state": "S1",
       "scope": "video_and_image",
+      "depends_on": [
+        "@陈志强设定卡",
+        "@姑姑设定卡",
+        "@餐厅夜景_S1无鱼"
+      ],
       "used_in": [
         "A1-03 Cut 2"
       ],
@@ -256,6 +235,11 @@
       "type": "SHOT-START",
       "state": "S1",
       "scope": "video_and_image",
+      "depends_on": [
+        "@小屿设定卡",
+        "@林岚设定卡",
+        "@餐厅夜景_S1无鱼"
+      ],
       "used_in": [
         "A1-04 KF2"
       ],
@@ -266,9 +250,13 @@
       "type": "SHOT-START",
       "state": "S1",
       "scope": "video_and_image",
+      "depends_on": [
+        "@餐厅夜景_S1无鱼"
+      ],
       "used_in": [
         "A1-05"
       ],
+      "note": "严禁挂小屿 CHAR-SHEET（ERR-002）",
       "path": "04_机位母帧与首帧/SHOT-START-A105.png"
     },
     "A1-07关键帧_桌沿攥拳": {
@@ -276,10 +264,13 @@
       "type": "SHOT-START",
       "state": "S1",
       "scope": "video_and_image",
+      "depends_on": [
+        "@餐厅夜景_S1无鱼"
+      ],
       "used_in": [
         "A1-07A"
       ],
-      "note": "服务 A1-07A（S-Struct 独立纯手，4s 剪 2.2s，严禁挂小屿人脸图）",
+      "note": "服务 A1-07A（S-Struct 独立纯手，4s 剪 2.2s，严禁挂小屿 CHAR-SHEET）",
       "path": "04_机位母帧与首帧/SHOT-START-A107-1.png"
     },
     "A1-04线稿分镜板": {

@@ -7,7 +7,7 @@
   "genre_preset": "presets/genre_realistic_drama.md",
   "platform_preset": "presets/platform_douyin_letterbox.md",
   "current_state": "S0",
-  "state_transition_note": "第1幕横跨 S0→S1：A1-01 与 A1-02 起势处于 S0（桌心摆 @清蒸鱼盘，餐边柜仅摆 @红苹果果盘）；A1-02 末拍将鱼盘移放餐边柜 @红苹果果盘 左侧后进入 S1（桌心平整空旷深胡桃木纹），A1-03 至 A1-07B 及第2–5幕全部单元在手册中显式声明 状态：S1 并锁定 @餐厅夜景_S1无鱼。",
+  "state_transition_note": "第1幕横跨 S0→S1：A1-01 与 A1-02 起势处于 S0（桌心摆 @清蒸鱼盘，东墙餐边柜靠前侧仅摆 @红苹果果盘）；A1-02 末拍将鱼盘移放东墙餐边柜靠前侧 @红苹果果盘 内侧/左侧后进入 S1（桌心平整空旷深胡桃木纹），A1-03 至 A1-07B 及第2–5幕全部单元在手册中显式声明 状态：S1 并锁定 @餐厅夜景_S1无鱼。",
   "removed_objects": [
     "清蒸鱼",
     "鱼盘",
@@ -90,7 +90,7 @@
       "token": "@餐厅空间线稿",
       "state": "ANY",
       "scope": "image_only",
-      "note": "仅作 SCENE-01-S0 生图首顺位骨架并清除黑线白底，严禁进入视频",
+      "note": "仅作 SCENE-01-S0 生图首顺位骨架并清除黑线白底（北墙偏东正对门洞+东墙餐边柜自然直角转角分区），严禁进入视频",
       "path": "03_独立空景与风格锚/SCENE-LAYOUT-01.png"
     },
     "餐厅夜景_S0有鱼": {

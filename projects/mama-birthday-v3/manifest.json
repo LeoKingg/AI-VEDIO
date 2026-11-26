@@ -1,0 +1,353 @@
+{
+  "schema_version": "3.0",
+  "project_id": "mama-birthday-v3",
+  "title": "今天谁过生日",
+  "primary_model": "2.5",
+  "fallback_model": "2.0",
+  "genre_preset": "presets/genre_realistic_drama.md",
+  "platform_preset": "presets/platform_douyin_letterbox.md",
+  "current_state": "S0",
+  "state_transition_note": "第1幕横跨 S0→S1：A1-01 与 A1-02 起势处于 S0（桌心摆 @清蒸鱼盘，餐边柜仅摆 @红苹果果盘）；A1-02 末拍将鱼盘移放餐边柜 @红苹果果盘 左侧后进入 S1（桌心平整空旷深胡桃木纹），A1-03 至 A1-07B 及第2–5幕全部单元在手册中显式声明 状态：S1 并锁定 @餐厅夜景_S1无鱼。",
+  "removed_objects": [
+    "清蒸鱼",
+    "鱼盘",
+    "鱼位",
+    "端走的鱼",
+    "少了一盘鱼"
+  ],
+  "assets": {
+    "风格光影锚_夜": {
+      "id": "STYLE-01",
+      "type": "STYLE-REF",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "03_独立空景与风格锚/STYLE-01.png"
+    },
+    "小屿三视图母档": {
+      "id": "CHAR-BASE-R01",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R01.png"
+    },
+    "小屿单人图": {
+      "id": "CHAR-VID-R01",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R01.png"
+    },
+    "小屿面部特写": {
+      "id": "CHAR-FACE-R01",
+      "type": "CHAR-FACE",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-FACE-R01.png"
+    },
+    "陈志强三视图母档": {
+      "id": "CHAR-BASE-R02",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R02.png"
+    },
+    "陈志强单人图": {
+      "id": "CHAR-VID-R02",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R02.png"
+    },
+    "陈志强面部特写": {
+      "id": "CHAR-FACE-R02",
+      "type": "CHAR-FACE",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-FACE-R02.png"
+    },
+    "奶奶三视图母档": {
+      "id": "CHAR-BASE-R03",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R03.png"
+    },
+    "奶奶单人图": {
+      "id": "CHAR-VID-R03",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R03.png"
+    },
+    "奶奶面部特写": {
+      "id": "CHAR-FACE-R03",
+      "type": "CHAR-FACE",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-FACE-R03.png"
+    },
+    "姑姑三视图母档": {
+      "id": "CHAR-BASE-R05",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R05.png"
+    },
+    "姑姑单人图": {
+      "id": "CHAR-VID-R05",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R05.png"
+    },
+    "姑姑面部特写": {
+      "id": "CHAR-FACE-R05",
+      "type": "CHAR-FACE",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-FACE-R05.png"
+    },
+    "林岚三视图母档": {
+      "id": "CHAR-BASE-R06",
+      "type": "CHAR-BASE",
+      "state": "ANY",
+      "scope": "image_only",
+      "path": "01_身份母档/CHAR-BASE-R06.png"
+    },
+    "林岚单人图": {
+      "id": "CHAR-VID-R06",
+      "type": "CHAR-VID",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-VID-R06.png"
+    },
+    "林岚面部特写": {
+      "id": "CHAR-FACE-R06",
+      "type": "CHAR-FACE",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "02_灰底视频单人图/CHAR-FACE-R06.png"
+    },
+    "清蒸鱼盘": {
+      "id": "PROP-01",
+      "type": "PROP",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "05_道具与定妆截帧/PROP-01.png"
+    },
+    "红苹果果盘": {
+      "id": "PROP-02",
+      "type": "PROP",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "path": "05_道具与定妆截帧/PROP-02.png"
+    },
+    "餐厅夜景_S0有鱼": {
+      "id": "SCENE-01-S0",
+      "type": "SCENE",
+      "state": "S0",
+      "scope": "image_only",
+      "path": "03_独立空景与风格锚/SCENE-01-S0.png"
+    },
+    "餐厅夜景_S1无鱼": {
+      "id": "SCENE-01-S1",
+      "type": "SCENE",
+      "state": "S1",
+      "scope": "video_and_image",
+      "path": "03_独立空景与风格锚/SCENE-01-S1.png"
+    },
+    "爸爸实景近景母帧": {
+      "id": "SHOT-MASTER-R02",
+      "type": "SHOT-MASTER",
+      "state": "ANY",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-01 Cut 2",
+        "Act2",
+        "Act3"
+      ],
+      "note": "85mm近景不涉桌心与餐边柜，S0/S1通用跨幕复用",
+      "path": "04_机位母帧与首帧/SHOT-MASTER-R02.png"
+    },
+    "奶奶实景近景母帧": {
+      "id": "SHOT-MASTER-R03",
+      "type": "SHOT-MASTER",
+      "state": "S1",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-04 KF1",
+        "A1-06",
+        "Act2",
+        "Act3",
+        "Act5"
+      ],
+      "note": "A1-06 扩为 6s 剪 4.8s 100% 同源直复",
+      "path": "04_机位母帧与首帧/SHOT-MASTER-R03.png"
+    },
+    "姑姑实景近景母帧": {
+      "id": "SHOT-MASTER-R05",
+      "type": "SHOT-MASTER",
+      "state": "S1",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-04 KF3",
+        "Act2",
+        "Act3"
+      ],
+      "path": "04_机位母帧与首帧/SHOT-MASTER-R05.png"
+    },
+    "小屿实景近景母帧": {
+      "id": "SHOT-MASTER-R01",
+      "type": "SHOT-MASTER",
+      "state": "S1",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-07B",
+        "Act2",
+        "Act3",
+        "Act4"
+      ],
+      "note": "服务 A1-07B（M-Master，11s 剪 9.5s）全幕高潮及跨幕复用",
+      "path": "04_机位母帧与首帧/SHOT-MASTER-R01.png"
+    },
+    "A1-01首帧_端鱼喝停": {
+      "id": "SHOT-START-A101",
+      "type": "SHOT-START",
+      "state": "S0",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-01 Cut 1"
+      ],
+      "path": "04_机位母帧与首帧/SHOT-START-A101.png"
+    },
+    "A1-02首帧_端鱼移步": {
+      "id": "SHOT-START-A102",
+      "type": "SHOT-START",
+      "state": "S0",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-02"
+      ],
+      "path": "04_机位母帧与首帧/SHOT-START-A102.png"
+    },
+    "A1-03首帧_过肩质问": {
+      "id": "SHOT-START-A103-1",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-03 Cut 1"
+      ],
+      "path": "04_机位母帧与首帧/SHOT-START-A103-1.png"
+    },
+    "A1-03关键帧_父姑停筷": {
+      "id": "SHOT-START-A103-2",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-03 Cut 2"
+      ],
+      "note": "服务 A1-03 Cut 2（5s-10s）50mm 双人腰上中景固定或极缓微推不横移",
+      "path": "04_机位母帧与首帧/SHOT-START-A103-2.png"
+    },
+    "A1-04关键帧_门洞炒菜": {
+      "id": "SHOT-START-A104-2",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-04 KF2"
+      ],
+      "path": "04_机位母帧与首帧/SHOT-START-A104-2.png"
+    },
+    "A1-05首帧_高俯空桌": {
+      "id": "SHOT-START-A105",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-05"
+      ],
+      "path": "04_机位母帧与首帧/SHOT-START-A105.png"
+    },
+    "A1-07关键帧_桌沿攥拳": {
+      "id": "SHOT-START-A107-1",
+      "type": "SHOT-START",
+      "state": "S1",
+      "scope": "video_and_image",
+      "used_in": [
+        "A1-07A"
+      ],
+      "note": "服务 A1-07A（S-Struct 独立纯手，4s 剪 2.2s，严禁挂小屿人脸图）",
+      "path": "04_机位母帧与首帧/SHOT-START-A107-1.png"
+    },
+    "A1-04线稿分镜板": {
+      "id": "GRID-LINEART-A104",
+      "type": "GRID-LINEART",
+      "state": "S1",
+      "scope": "previs_only",
+      "used_in": [
+        "Pre-Vis_Animatic"
+      ],
+      "note": "仅用于 Pre-Vis 动态分镜预演与剪映节奏核验，不挂入视频 A1-04 推理以免拼图框残留",
+      "path": "04_机位母帧与首帧/GRID-LINEART-A104.png"
+    },
+    "小屿干声_压抑": {
+      "id": "VOICE-R01-TENSE",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R01-TENSE.wav"
+    },
+    "小屿干声_爆发": {
+      "id": "VOICE-R01-BURST",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R01-BURST.wav"
+    },
+    "陈志强干声_压抑": {
+      "id": "VOICE-R02-TENSE",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R02-TENSE.wav"
+    },
+    "奶奶干声_平静": {
+      "id": "VOICE-R03-CALM",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R03-CALM.wav"
+    },
+    "姑姑干声_平静": {
+      "id": "VOICE-R05-CALM",
+      "type": "VOICE-REF",
+      "state": "ANY",
+      "scope": "video_only",
+      "path": "06_参考干声与音轨/VOICE-R05-CALM.wav"
+    }
+  },
+  "cross_act_masters": [
+    "爸爸实景近景母帧",
+    "奶奶实景近景母帧",
+    "姑姑实景近景母帧",
+    "小屿实景近景母帧"
+  ],
+  "voice_stems": {
+    "R01": [
+      "小屿干声_压抑",
+      "小屿干声_爆发"
+    ],
+    "R02": [
+      "陈志强干声_压抑"
+    ],
+    "R03": [
+      "奶奶干声_平静"
+    ],
+    "R05": [
+      "姑姑干声_平静"
+    ]
+  }
+}

@@ -45,7 +45,7 @@ AI-VEDIO/
 │   ├── VISUAL_BIBLE_GUIDE.md              # 视觉圣经、9 类 SSOT 资产与 30 天写实人脸信任窗
 │   ├── CINEMATOGRAPHY_AND_TRANSITIONS.md  # 动机运镜、Show Don't Tell、双层坐标系与安全区
 │   ├── POST_JIANYING_GUIDE.md             # 五步院线化 Finishing 收口与四轨 -14 LUFS 混音规范
-│   └── ERROR_PLAYBOOK.md                  # 实战复盘库（ERR-001 ~ ERR-028，含生命周期标记）
+│   └── ERROR_PLAYBOOK.md                  # 实战复盘库（ERR-001 ~ ERR-029，含生命周期标记）
 ├── presets/                               # 可插拔题材与平台预设
 │   ├── genre_realistic_drama.md           # 现实主义情感剧情预设
 │   ├── genre_suspense_thriller.md         # 悬疑惊悚类型预设

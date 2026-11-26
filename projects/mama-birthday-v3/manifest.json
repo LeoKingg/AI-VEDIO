@@ -7,7 +7,7 @@
   "genre_preset": "presets/genre_realistic_drama.md",
   "platform_preset": "presets/platform_douyin_letterbox.md",
   "current_state": "S0",
-  "state_transition_note": "第1幕横跨 S0→S1：A1-01 与 A1-02 起势处于 S0（桌心摆 @清蒸鱼盘，东墙餐边柜靠前侧仅摆 @红苹果果盘）；A1-02 末拍将鱼盘移放东墙餐边柜靠前侧 @红苹果果盘 内侧/左侧后进入 S1（桌心平整空旷深胡桃木纹），A1-03 至 A1-07B 及第2–5幕全部单元在手册中显式声明 状态：S1 并锁定 @餐厅夜景_S1无鱼。",
+  "state_transition_note": "第1幕横跨 S0→S1：A1-01 与 A1-02 起势处于 S0（桌心摆 @清蒸鱼盘，东墙餐边柜靠前侧仅摆 @红苹果果盘）；S0→S1 空景采用 Seedream 5.5 两轮单改（Round 1 @餐厅夜景_S1A擦桌 原位移除桌心鱼盘还原木纹 → Round 2 @餐厅夜景_S1无鱼 将透明底 @清蒸鱼盘 稳放餐边柜红苹果左内侧）并派生 3 张多视角纯净空景包（@餐厅东侧微仰空景_S0、@餐厅东侧局部空景_S1、@餐厅门洞纵深空景_S1）；A1-03 至 A1-07B 及第2–5幕全部单元在手册中显式声明 状态：S1 并锁定 S1 空景体系。",
   "removed_objects": [
     "清蒸鱼",
     "鱼盘",
@@ -16,11 +16,12 @@
     "少了一盘鱼"
   ],
   "asset_stats": {
-    "total_registered": 28,
-    "static_images": 23,
+    "total_registered": 32,
+    "static_images": 27,
     "voice_refs": 5,
-    "first_wave_static_anchors": 19,
-    "char_sheets": 5
+    "first_wave_static_anchors": 23,
+    "char_sheets": 5,
+    "multi_angle_scene_pack": 3
   },
   "assets": {
     "风格光影锚_夜": {
@@ -75,6 +76,7 @@
       "type": "PROP",
       "state": "ANY",
       "scope": "video_and_image",
+      "note": "Seedream 5.5 原生 RGBA 透明底 PNG 独立道具，45°暖侧光，零灰底色溢",
       "path": "05_道具与定妆截帧/PROP-01.png"
     },
     "红苹果果盘": {
@@ -82,6 +84,7 @@
       "type": "PROP",
       "state": "ANY",
       "scope": "video_and_image",
+      "note": "Seedream 5.5 原生 RGBA 透明底 PNG 独立道具，45°暖侧光，零灰底色溢",
       "path": "05_道具与定妆截帧/PROP-02.png"
     },
     "餐厅空间线稿": {
@@ -90,7 +93,7 @@
       "token": "@餐厅空间线稿",
       "state": "ANY",
       "scope": "image_only",
-      "note": "仅作 SCENE-01-S0 生图首顺位骨架并清除黑线白底（北墙偏东正对门洞+东墙餐边柜自然直角转角分区），严禁进入视频",
+      "note": "支持中文位置标注与彩框的建筑一点半透视草图，仅作 SCENE-01-S0 生图首顺位骨架并在成图彻底清除所有线条与标注文字，严禁进入视频",
       "path": "03_独立空景与风格锚/SCENE-LAYOUT-01.png"
     },
     "餐厅夜景_S0有鱼": {
@@ -106,12 +109,65 @@
       ],
       "path": "03_独立空景与风格锚/SCENE-01-S0.png"
     },
+    "餐厅夜景_S1A擦桌": {
+      "id": "SCENE-01-S1A",
+      "type": "SCENE",
+      "token": "@餐厅夜景_S1A擦桌",
+      "state": "S1",
+      "scope": "image_only",
+      "depends_on": [
+        "@餐厅夜景_S0有鱼"
+      ],
+      "note": "S0→S1 两轮单改 Round 1：基于无透明通道 RGB 的 @餐厅夜景_S0有鱼 单点原位移除桌心清蒸鱼盘并真实还原平整深胡桃木纹",
+      "path": "03_独立空景与风格锚/SCENE-01-S1A.png"
+    },
     "餐厅夜景_S1无鱼": {
       "id": "SCENE-01-S1",
       "type": "SCENE",
       "state": "S1",
       "scope": "video_and_image",
+      "depends_on": [
+        "@餐厅夜景_S1A擦桌",
+        "@清蒸鱼盘"
+      ],
+      "note": "S0→S1 两轮单改 Round 2：将原生 RGBA 透明底 @清蒸鱼盘 稳放到 @餐厅夜景_S1A擦桌 东墙餐边柜红苹果果盘左内侧空台面",
       "path": "03_独立空景与风格锚/SCENE-01-S1.png"
+    },
+    "餐厅东侧微仰空景_S0": {
+      "id": "SCENE-01-S0-EAST",
+      "type": "SCENE",
+      "token": "@餐厅东侧微仰空景_S0",
+      "state": "S0",
+      "scope": "image_only",
+      "depends_on": [
+        "@餐厅夜景_S0有鱼"
+      ],
+      "note": "多视角纯净空景包 1/3：50mm 平桌微仰东半侧 S0 局部纯净空景，根治 SHOT-START-A101 换机位空椅泄漏（ERR-034）",
+      "path": "03_独立空景与风格锚/SCENE-01-S0-EAST.png"
+    },
+    "餐厅东侧局部空景_S1": {
+      "id": "SCENE-01-S1-EAST",
+      "type": "SCENE",
+      "token": "@餐厅东侧局部空景_S1",
+      "state": "S1",
+      "scope": "image_only",
+      "depends_on": [
+        "@餐厅夜景_S1无鱼"
+      ],
+      "note": "多视角纯净空景包 2/3：50mm 平桌微仰东半侧 S1 局部纯净空景，根治 SHOT-START-A103-1 换机位空椅泄漏（ERR-034）",
+      "path": "03_独立空景与风格锚/SCENE-01-S1-EAST.png"
+    },
+    "餐厅门洞纵深空景_S1": {
+      "id": "SCENE-01-S1-DOOR",
+      "type": "SCENE",
+      "token": "@餐厅门洞纵深空景_S1",
+      "state": "S1",
+      "scope": "image_only",
+      "depends_on": [
+        "@餐厅夜景_S1无鱼"
+      ],
+      "note": "多视角纯净空景包 3/3：50mm 正对北墙偏东单框透明玻璃厨房门洞纵深纯净空景，专供 SHOT-START-A104-2 告别硬转 90°",
+      "path": "03_独立空景与风格锚/SCENE-01-S1-DOOR.png"
     },
     "爸爸实景近景母帧": {
       "id": "SHOT-MASTER-R02",
@@ -180,7 +236,7 @@
         "Act3",
         "Act4"
       ],
-      "note": "服务 A1-07B（M-Master，11s 剪 9.5s）全幕高潮及跨幕复用",
+      "note": "服务 A1-07B（M-Master，12s 剪 9.5s）全幕高潮及跨幕复用",
       "path": "04_机位母帧与首帧/SHOT-MASTER-R01.png"
     },
     "A1-01首帧_端鱼喝停": {
@@ -191,11 +247,12 @@
       "depends_on": [
         "@小屿设定卡",
         "@清蒸鱼盘",
-        "@餐厅夜景_S0有鱼"
+        "@餐厅东侧微仰空景_S0"
       ],
       "used_in": [
         "A1-01 Cut 1"
       ],
+      "note": "绑定多视角空景底板 @餐厅东侧微仰空景_S0，彻底脱离全屋多椅 S0 图",
       "path": "04_机位母帧与首帧/SHOT-START-A101.png"
     },
     "A1-02首帧_端鱼移步": {
@@ -221,12 +278,12 @@
       "scope": "video_and_image",
       "depends_on": [
         "@小屿设定卡",
-        "@餐厅夜景_S1无鱼"
+        "@餐厅东侧局部空景_S1"
       ],
       "used_in": [
         "A1-03 Cut 1"
       ],
-      "note": "严禁挂爸爸 CHAR-SHEET（ERR-002）",
+      "note": "绑定多视角空景底板 @餐厅东侧局部空景_S1，严禁挂爸爸 CHAR-SHEET（ERR-002）",
       "path": "04_机位母帧与首帧/SHOT-START-A103-1.png"
     },
     "A1-03关键帧_父姑停筷": {
@@ -253,11 +310,12 @@
       "depends_on": [
         "@小屿设定卡",
         "@林岚设定卡",
-        "@餐厅夜景_S1无鱼"
+        "@餐厅门洞纵深空景_S1"
       ],
       "used_in": [
         "A1-04 KF2"
       ],
+      "note": "绑定多视角空景底板 @餐厅门洞纵深空景_S1，正对门洞告别硬转 90°",
       "path": "04_机位母帧与首帧/SHOT-START-A104-2.png"
     },
     "A1-05首帧_高俯空桌": {

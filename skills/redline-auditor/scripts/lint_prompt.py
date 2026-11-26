@@ -133,7 +133,7 @@ KEYFRAME_STILL_PREFIXES = ("SHOT-START-", "SHOT-MASTER-", "KEYFRAME-")
 FACELESS_SHOT_PATTERN = re.compile(r"俯拍桌面|高角度俯拍|极近手部特写|纯手部|头肩均处于画幅之外|头部均处于画幅之外|无人物面部|禁止出现人物头部|不出现任何人脸|严禁出现人物面部|不可出现人物面部")
 VOICE_ASSET_PATTERN = re.compile(r"(?:干声|VOICE[-_]?REF)", re.IGNORECASE)
 SPATIAL_INHERIT_PALETTE_PATTERN = re.compile(r"(?:提供|延续|继承)[^。；\n]{0,28}(?:木纹|材质|光比|门框)")
-SPATIAL_LAYOUT_LOCK_PATTERN = re.compile(r"布局|透视|摆位|方位|结构")
+SPATIAL_LAYOUT_LOCK_PATTERN = re.compile(r"布局|透视|摆位|方位|结构|局部[^。；\n]{0,16}(?:虚化|素墙|餐边柜|桌面)|裁出画外|平桌微仰")
 
 
 @dataclass

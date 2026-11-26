@@ -104,7 +104,7 @@ THREE_VIEW_TOKEN_PATTERN = re.compile(r"(?:三视图|CHAR[-_]?BASE|母档)", re.
 HIGH_RISK_WHITE_CALM_PATTERN = re.compile(r"#FFFFFF|纯白底|纯白背景|平静头肩|表情网格", re.IGNORECASE)
 STYLE_ANCHOR_TOKEN_PATTERN = re.compile(r"(?:风格光影锚|风格锚|光影锚|STYLE[-_]?REF)", re.IGNORECASE)
 SCENE_TOKEN_PATTERN = re.compile(r"(?:空景|SCENE)", re.IGNORECASE)
-CHAR_TOKEN_PATTERN = re.compile(r"(?:单人图|面部特写|三视图|CHAR)", re.IGNORECASE)
+CHAR_TOKEN_PATTERN = re.compile(r"(?:设定卡|单人图|面部特写|三视图|CHAR)", re.IGNORECASE)
 
 # Seedream still-image specific redlines
 STILL_CAMERA_MOVE_PATTERN = re.compile(r"缓慢推镜|慢推镜|推镜头|拉镜头|环绕拍摄|环绕镜头|跟拍|摇镜|一镜到底|甩镜头")
@@ -617,9 +617,9 @@ def _lint_video(unit: PromptUnit, model: str) -> List[Issue]:
                     unit=uid,
                     severity="P0" if model == "2.0" else "P1",
                     rule_id="RL-06",
-                    message=f"视频单元绑定了三视图母档 @{tok}，易触发人物克隆与畸变（ERR-007）",
+                    message=f"视频单元绑定了老式三视图/母档 @{tok}，易触发人物克隆与畸变（ERR-007）",
                     excerpt=f"@{tok}",
-                    suggestion="替换为中灰底侧光单人图（CHAR-VID）+ 70% 纯头部特写（CHAR-FACE）",
+                    suggestion="替换为 V3.1 一卡双区复合角色设定卡（CHAR-SHEET，左全身+右50%+大头）或同源闭唇实景母帧（SHOT-MASTER）",
                 )
             )
 
@@ -631,7 +631,7 @@ def _lint_video(unit: PromptUnit, model: str) -> List[Issue]:
                 rule_id="RL-06",
                 message="检出纯白背景/平静头肩照/表情网格关键词，会洗平电影暗调光比或锁死肌肉（ERR-002）",
                 excerpt=m.group(0),
-                suggestion="改用中灰底侧光单人图 + 同源闭唇实景母帧驱动",
+                suggestion="改用 #555A64 侧光一卡双区 CHAR-SHEET 复合设定卡 + 同源闭唇实景母帧驱动",
             )
         )
 

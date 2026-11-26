@@ -18,47 +18,19 @@
       "scope": "image_only",
       "path": "03_独立空景与风格锚/STYLE-01.png"
     },
-    "主角A三视图母档": {
-      "id": "CHAR-BASE-R01",
-      "type": "CHAR-BASE",
-      "state": "ANY",
-      "scope": "image_only",
-      "path": "01_身份母档/CHAR-BASE-R01.png"
-    },
-    "主角A面部特写": {
-      "id": "CHAR-FACE-R01",
-      "type": "CHAR-FACE",
+    "主角A设定卡": {
+      "id": "CHAR-SHEET-R01",
+      "type": "CHAR-SHEET",
       "state": "ANY",
       "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-FACE-R01.png"
+      "path": "01_角色设定卡/CHAR-SHEET-R01.png"
     },
-    "主角A单人图": {
-      "id": "CHAR-VID-R01",
-      "type": "CHAR-VID",
+    "主角B设定卡": {
+      "id": "CHAR-SHEET-R02",
+      "type": "CHAR-SHEET",
       "state": "ANY",
       "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-VID-R01.png"
-    },
-    "主角B三视图母档": {
-      "id": "CHAR-BASE-R02",
-      "type": "CHAR-BASE",
-      "state": "ANY",
-      "scope": "image_only",
-      "path": "01_身份母档/CHAR-BASE-R02.png"
-    },
-    "主角B面部特写": {
-      "id": "CHAR-FACE-R02",
-      "type": "CHAR-FACE",
-      "state": "ANY",
-      "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-FACE-R02.png"
-    },
-    "主角B单人图": {
-      "id": "CHAR-VID-R02",
-      "type": "CHAR-VID",
-      "state": "ANY",
-      "scope": "video_and_image",
-      "path": "02_灰底视频单人图/CHAR-VID-R02.png"
+      "path": "01_角色设定卡/CHAR-SHEET-R02.png"
     },
     "核心道具A": {
       "id": "PROP-01",

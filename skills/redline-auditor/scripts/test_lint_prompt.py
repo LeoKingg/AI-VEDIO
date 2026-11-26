@@ -289,6 +289,25 @@ class TestLintPromptV3(unittest.TestCase):
         self.assertEqual(u.declared_state, "S1")
         self.assertEqual([], lp.lint_unit(u, "2.5"))
 
+    def test_v31_char_sheet_image_and_video_pass(self):
+        img_unit = _make_image(
+            "CHAR-SHEET-R01",
+            "复合角色设定卡，纯色中深冷灰#555A64无缝影棚背景，30度暖色侧光。画幅左半幅为三十岁中国男子正面全身站立略微侧身，穿深蓝夹克与黑裤皮鞋；画幅右半幅占过半面积为同一人物高清纯头部特写，嘴唇平直轻闭。画面内无文字，无分隔线。",
+            is_kf=False,
+        )
+        self.assertEqual([], lp.lint_unit(img_unit, "2.5"))
+
+        vid_unit = _make_video(
+            "M01",
+            "@M01母帧 为首帧起点；@主角A设定卡（左全身+右半幅高清面部特征）锁死主角体貌与皱纹细节，成片中仅有此一位主角，音色紧锁 @主角A干声。\n"
+            "[0s-5s] 85mm特写固定机位，上方暖黄吊灯照亮额颊，半颊沉入暗影。主角居画面左三分之一垂眸沉默一秒后抬头低语：{我没事。}尾留一秒沉默。\n"
+            "全程保留<室内底噪>。全程无背景音乐，无字幕，无水印。",
+            declared=["M01母帧", "主角A设定卡", "主角A干声"],
+            duration=5,
+            state="S1",
+        )
+        self.assertEqual([], lp.lint_unit(vid_unit, "2.5"))
+
 
 if __name__ == "__main__":
     unittest.main()

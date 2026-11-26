@@ -25,7 +25,7 @@
 | :---: | :--- | :--- |
 | **Wave 1 · 定底座（叙事/空间/视觉）** | `skills/director-showrunner/` | 双入口编剧拆解、第 0.5 步讨论表、潜台词与留存钩子、五模式路由 |
 | **Wave 1 · 定底座（叙事/空间/视觉）** | `skills/cinematography-blocking/` | 动机运镜、Z 轴纵深与移焦、360°→2D 空间转译、视锥邻座守恒、平台安全区 |
-| **Wave 1 · 定底座（叙事/空间/视觉）** | `skills/art-asset-pipeline/` | 视觉圣经、`CHAR-FACE 70%` / `SHOT-MASTER` / `GRID-LINEART`、Seedream `≤255` 字纯正向模板、Pre-Vis 预演 |
+| **Wave 1 · 定底座（叙事/空间/视觉）** | `skills/art-asset-pipeline/` | 视觉圣经、`CHAR-SHEET` 单卡双区设定图 / `SHOT-MASTER` / `GRID-LINEART`、Seedream `≤255` 字纯正向模板、Pre-Vis 预演 |
 | **Wave 2 · 精雕编译（表演/声学/视频）** | `skills/performance-sound-director/` | 潜台词物理演技链、防老年数字人三铁律、视频动作参考、四轨声学点位与多情绪干声 |
 | **Wave 2 · 精雕编译（表演/声学/视频）** | `skills/seedance-compiler/` | 中间层规格 → `Seedance 2.5`（主力整数秒时间戳 / 编辑重拍）或 `2.0`（镜号制兼容）纯净 Prompt |
 | **Wave 3 · 独立门禁与终剪** | `skills/redline-auditor/` | 双目标机械扫描（`lint_prompt.py`）+ 独立隔离上下文跨幕盲审（只判 `PASS / FAIL`，严禁代改文风） |
@@ -42,10 +42,10 @@ AI-VEDIO/
 ├── docs/                                  # Layer 1：通用影视制片底座（SSOT）
 │   ├── STUDIO_CONSTITUTION.md             # 工作室总宪法（冲突仲裁 / 3 波次调度 / 预算止损律）
 │   ├── SOP_V3.0.md                        # V3.0 六阶段工业化制片总纲与五模式路由矩阵
-│   ├── VISUAL_BIBLE_GUIDE.md              # 视觉圣经、9 类 SSOT 资产与 30 天写实人脸信任窗
+│   ├── VISUAL_BIBLE_GUIDE.md              # 视觉圣经、SSOT 资产树与 30 天写实人脸信任窗
 │   ├── CINEMATOGRAPHY_AND_TRANSITIONS.md  # 动机运镜、Show Don't Tell、双层坐标系与安全区
 │   ├── POST_JIANYING_GUIDE.md             # 五步院线化 Finishing 收口与四轨 -14 LUFS 混音规范
-│   └── ERROR_PLAYBOOK.md                  # 实战复盘库（ERR-001 ~ ERR-029，含生命周期标记）
+│   └── ERROR_PLAYBOOK.md                  # 实战复盘库（ERR-001 ~ ERR-030，含生命周期标记）
 ├── presets/                               # 可插拔题材与平台预设
 │   ├── genre_realistic_drama.md           # 现实主义情感剧情预设
 │   ├── genre_suspense_thriller.md         # 悬疑惊悚类型预设

@@ -173,8 +173,8 @@ class TestLintPromptV3(unittest.TestCase):
 
     def test_rl21_seedream_length_negatives_camera_buzzwords_and_order(self):
         long_bad = (
-            "16:9横屏，8K超高清极致细节，缓慢推镜拍向主角。绝不复刻空椅，严禁出现冰箱，绝无多余人物。"
-            + "暖黄顶光切亮额颊与桌面，" * 26
+            "16:9横屏，8K超高清极致细节，缓慢推镜拍向主角。绝不复刻空椅，严禁出现冰箱，绝无多余人物，不要放大房间，禁止改变机位，切勿出现杂物。"
+            + "暖黄顶光切亮额颊与桌面，" * 32
             + "无字无水印。"
         )
         unit = _make_image(
@@ -187,9 +187,28 @@ class TestLintPromptV3(unittest.TestCase):
         rl21_msgs = [i.message for i in issues if i.rule_id == "RL-21" and i.severity == "P0"]
         self.assertTrue(any("运镜词" in m for m in rl21_msgs))
         self.assertTrue(any("吹水词" in m for m in rl21_msgs))
-        self.assertTrue(any("超长" in m for m in rl21_msgs))
-        self.assertTrue(any("视觉否定词" in m for m in rl21_msgs))
+        self.assertTrue(any("过长" in m for m in rl21_msgs))
+        self.assertTrue(any("否定护栏" in m for m in rl21_msgs))
         self.assertTrue(any("第 1 顺位" in m for m in rl21_msgs))
+
+    def test_rl21_fluent_300_char_with_guardrails_passes_and_rl33_warns_hex(self):
+        fluent = (
+            "50mm平视中近景电影实拍镜头。图1（ @主角A单人图 ）提供38岁男性相貌与深灰夹克，"
+            "图2（ @主场景_空桌心 ）提供同视角房间空间布局、门柜桌椅摆位与暗暖光比。"
+            "男性坐居画面左侧三分之一，躯干微侧朝右、三分之二侧脸直盯画外右侧，双唇自然轻闭蓄势，"
+            "右手轻搭胡桃木桌沿。按房间暖黄吊灯光源重算人物额颊受光与桌面接触阴影，统一暗暖胶片调色与细微颗粒。"
+            "保持原空间尺度与镜头焦段裁切，不要放大房间，禁止改变机位角度，绝不带入多余桌椅，没有文字与水印。"
+        )
+        unit_ok = _make_image("SHOT-START-M02", fluent, declared=["主角A单人图", "主场景_空桌心"], is_kf=True)
+        self.assertEqual([], lp.lint_unit(unit_ok, "2.5"))
+
+        bad_hex = _make_image(
+            "CHAR-01",
+            "中深冷灰纯色背景（#555A64），30度暖侧光斜照。",
+            is_kf=False,
+        )
+        issues_hex = lp.lint_unit(bad_hex, "2.5")
+        self.assertTrue(any(i.rule_id == "RL-33" and i.severity == "P1" for i in issues_hex))
 
     def test_rl21_clean_seedream_master_passes(self):
         body = (

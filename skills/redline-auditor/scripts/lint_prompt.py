@@ -77,9 +77,10 @@ PRODUCER_LEAK_PATTERNS: List[re.Pattern[str]] = [
     re.compile(r"\bMASTER-\d+\b"),
     re.compile(r"\bINSERT-\d+\b"),
     re.compile(r"\b(?:SEG|EDIT|S0|S1)\b"),
-    re.compile(r"(?<![@\w])(?:参考图|图)[0-9](?!至)"),
+    re.compile(r"(?<![@\w])参考图[0-9](?!至)"),
     re.compile(r"回环复用|后期贴轨|剪映镜像|压屏字幕|建议时长|精剪目标|任务属性|绑定参考"),
 ]
+VIDEO_RAW_TU_PATTERN = re.compile(r"(?<![@\w])图[0-9](?!至)")
 
 # Timestamp patterns: [0s-4s], 【0s-3s】, 0s-3s, 0-3s, 0-3秒, [0-3秒] (exclude decimal ranges like 2.5-3秒)
 TIMESTAMP_PATTERN = re.compile(
@@ -108,7 +109,8 @@ CHAR_TOKEN_PATTERN = re.compile(r"(?:设定卡|单人图|面部特写|三视图|
 
 # Seedream still-image specific redlines
 STILL_CAMERA_MOVE_PATTERN = re.compile(r"缓慢推镜|慢推镜|推镜头|拉镜头|环绕拍摄|环绕镜头|跟拍|摇镜|一镜到底|甩镜头")
-STILL_BUZZWORD_PATTERN = re.compile(r"\b8K\b|\b16K\b|ultra\s*detailed|masterpiece|超高清极致细节", re.IGNORECASE)
+STILL_BUZZWORD_PATTERN = re.compile(r"\b4K\b|\b8K\b|\b16K\b|ultra\s*detailed|masterpiece|超高清极致细节", re.IGNORECASE)
+HEX_COLOR_PATTERN = re.compile(r"#[0-9A-Fa-f]{6}\b")
 STILL_VISUAL_NEG_PATTERN = re.compile(
     r"(?:不要|禁止|严禁|绝不|不得|切勿|绝无|不出现|无画|无窗|无电器)"
     r"(?!背景音乐|BGM|bgm|字幕|水印|文字|字|分隔线|杂物|蜡|磨皮)"
@@ -312,6 +314,19 @@ def _lint_common(unit: PromptUnit, manifest: Optional[Dict[str, Any]]) -> List[I
                 )
             )
 
+    if unit.kind == "video":
+        for m in VIDEO_RAW_TU_PATTERN.finditer(body_no_at):
+            issues.append(
+                Issue(
+                    unit=uid,
+                    severity="P0",
+                    rule_id="RL-04",
+                    message="视频纯净正文泄漏未绑定 @ 的裸图号，请改用即梦 @资产名",
+                    excerpt=m.group(0),
+                    suggestion="改用正式 @资产名（多关键帧序列仅用 @图1 至 @图N）",
+                )
+            )
+
     # RL-05: @Asset binding consistency
     if unit.declared_assets:
         declared_set = set(unit.declared_assets)
@@ -442,41 +457,41 @@ def _lint_image(unit: PromptUnit) -> List[Issue]:
             )
         )
 
-    # Keyframe / Angle Master strict first-principles gates
+    # Keyframe / Angle Master official Seedream 5.5 gates (<=300 Chinese chars recommended, <=5 guardrails)
     if unit.is_keyframe_still:
-        if char_count > 280:
+        if char_count > 380:
             issues.append(
                 Issue(
                     unit=uid,
                     severity="P0",
                     rule_id="RL-21",
-                    message=f"Seedream 首帧/母帧超长（{char_count} 字 > 280 字 P0 硬上限，ERR-024）",
+                    message=f"Seedream 首帧/母帧过长（{char_count} 字 > 380 字，信息易分散漏元素，ERR-024）",
                     excerpt=f"总字数={char_count}",
-                    suggestion="瘦身至 ≤255 字四段极简正向结构（景别→分工→2D站位朝向→光影胶片）",
+                    suggestion="拆块精简至官方建议 ≤300 汉字连贯完整短句（用途分工→主体动作→光影融合→护栏）",
                 )
             )
-        elif char_count > 260:
+        elif char_count > 320:
             issues.append(
                 Issue(
                     unit=uid,
                     severity="P1",
                     rule_id="RL-07",
-                    message=f"Seedream 首帧/母帧接近上限（{char_count} 字，建议 ≤255 字）",
+                    message=f"Seedream 首帧/母帧略超官方 300 汉字建议区（{char_count} 字）",
                     excerpt=f"总字数={char_count}",
-                    suggestion="精简冗余修饰词以保持最高注意力信噪比",
+                    suggestion="精简冗余词或改单轮局部微调，保持高信噪比与连贯完整句子",
                 )
             )
 
         still_negs = list(STILL_VISUAL_NEG_PATTERN.finditer(body))
-        if len(still_negs) > 1:
+        if len(still_negs) > 5:
             issues.append(
                 Issue(
                     unit=uid,
                     severity="P0",
                     rule_id="RL-21",
-                    message=f"Seedream 首帧/母帧视觉否定词超限（检出 {len(still_negs)} 处 > 1 处上限，ERR-024）",
-                    excerpt=" / ".join(m.group(0) for m in still_negs[:5]),
-                    suggestion="改用正向构图裁切与正向物理状态描写，仅保留“无字无水印”",
+                    message=f"Seedream 首帧/母帧否定护栏过多（检出 {len(still_negs)} 处 > 5 处上限，ERR-024）",
+                    excerpt=" / ".join(m.group(0) for m in still_negs[:6]),
+                    suggestion="保持正面写满为主，文末仅留 ≤5 条精准相机/防泄漏护栏",
                 )
             )
 
@@ -495,6 +510,21 @@ def _lint_image(unit: PromptUnit) -> List[Issue]:
                         suggestion="将人物参考图排在前顺位，真实空景退居末位仅借光比与环境材质",
                     )
                 )
+
+    # RL-33: Warn against raw hex color codes in still prompts (avoid text-rendering / rigid color artifacts; skip #FFFFFF handled by RL-06)
+    for m_hex in HEX_COLOR_PATTERN.finditer(body):
+        if m_hex.group(0).upper() == "#FFFFFF":
+            continue
+        issues.append(
+            Issue(
+                unit=uid,
+                severity="P1",
+                rule_id="RL-33",
+                message=f"生图正文含十六进制色码 {m_hex.group(0)}，5.5 强文字能力下易渲染错字或色块偏差（ERR-035）",
+                excerpt=m_hex.group(0),
+                suggestion="改用自然语言色彩描写（如“纯色无纹理的中深冷灰背景”）",
+            )
+        )
 
     # RL-32: Spatial layout lock for wide/medium structural stills & CHAR-SHEET seamless margins
     if uid.upper().startswith(("SHOT-START", "KEYFRAME")):
